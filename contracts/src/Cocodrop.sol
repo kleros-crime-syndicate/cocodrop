@@ -63,8 +63,8 @@ contract Cocodrop {
      * @param _airdropId The id of the airdrop.
      */
     function verifyClaim(
-        uint256 _airdropId
-        uint _claimedAmount,
+        uint256 _airdropId,
+        uint256 _claimedAmount,
         bytes32[] memory _merkleProof
     )
         public
