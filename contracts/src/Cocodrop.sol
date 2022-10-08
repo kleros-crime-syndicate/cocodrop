@@ -41,7 +41,7 @@ contract Cocodrop {
     emit NewAirdrop(airdrops.length - 1, _merkleRoot, _token, _amount, _ipfs);
   }
 
-  function redeem(uint256 _airdropId, address _receiver, byte32[] _proofThing) public {
+  function redeem(uint256 _airdropId, address _receiver, byte32[] memory _merkleProof) public {
     // magic proving goes here
 
     // check the amount is under or equal pending amount by the airdrop
