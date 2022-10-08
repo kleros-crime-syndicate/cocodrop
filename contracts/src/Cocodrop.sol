@@ -43,7 +43,10 @@ contract Cocodrop {
 
   function redeem(uint256 _airdropId, address _receiver, byte32[] _proofThing) public {
     // magic proving goes here
+
+    // check the amount is under or equal pending amount by the airdrop
     redeemed[_airdropId][_receiver] = true;
+    // reduce the amount of the airdrop by the amount redeemed
     // transfer goes here
     emit Redemption(_airdropId, receiver);
   }
