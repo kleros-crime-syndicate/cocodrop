@@ -24,13 +24,20 @@ const getAllHumans = async (): Promise<string[]> => {
   return batches.flat(1);
 };
 
-const pohStrategy = async () => {
+const pohCompute = async (): Promise<{totalWeight: number, shares: Share[]}> => {
   const humans = await getAllHumans();
   const weightedHumans = humans.map((human) => ({ address: human, weight: 1 }));
   return {
     totalWeight: humans.length,
-    weights: weightedHumans,
+    shares: weightedHumans,
   };
 };
+
+const pohStrategy: Strategy = {
+  name: "Proof of Humanity",
+  description: "Every registered human gets one share",
+  logoUri: "https://image.com/thing.png",
+  computeShares: pohCompute
+}
 
 export default pohStrategy
