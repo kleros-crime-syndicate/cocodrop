@@ -2,9 +2,11 @@ const fs = require("fs-extra");
 const mustache = require("mustache");
 
 const chainNameToChainId = {
-  xdai: 100,
   mainnet: 1,
   goerli: 5,
+  polygon: 137,
+  gnosischain: 100,
+  mumbai: 80001,
 };
 
 async function main() {
