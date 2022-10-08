@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://cocodrop.netlify.app">
-    <img alt="FIXME" src="https://raw.githubusercontent.com/kleros-crime-syndicate/cocodrop/master/cocodrop.svg" width="512">
+    <img alt="FIXME" src="https://raw.githubusercontent.com/kleros-crime-syndicate/cocodrop/master/interface/src/assets/cocodrop.svg" width="512">
   </a>
 </p>
 
