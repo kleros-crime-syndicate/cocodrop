@@ -42,8 +42,51 @@ const config: HardhatUserConfig = {
       saveDeployments: true,
       tags: ["test", "local"],
     },
-
-    xdai: {
+    // Testnets ------------------
+    goerli: {
+      chainId: 5,
+      url: "https://rpc.ankr.com/eth_goerli",
+      accounts: process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
+      live: true,
+      saveDeployments: true,
+      tags: ["staging"],      
+      verify: {
+        etherscan: {
+          apiKey: etherscanApis["5"],
+          apiUrl: "https://goerli.etherscan.io/"
+        },
+      },
+    },
+    mumbai: {
+      chainId: 80001,
+      url: "https://rpc.ankr.com/polygon_mumbai",
+      accounts: process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
+      live: true,
+      saveDeployments: true,
+      tags: ["staging"],      
+      verify: {
+        etherscan: {
+          apiKey: etherscanApis["80001"],
+          apiUrl: "https://api-testnet.polygonscan.com/"
+        },
+      },
+    },
+    // Mainnets ------------------
+    polygon: {
+      chainId: 137,
+      url: "https://rpc.ankr.com/polygon",
+      accounts: process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
+      live: true,
+      saveDeployments: true,
+      tags: ["production"],      
+      verify: {
+        etherscan: {
+          apiKey: etherscanApis["137"],
+          apiUrl: "https://polygonscan.com/"
+        },
+      },
+    },
+    gnosischain: {
       chainId: 100,
       url: "https://rpc.gnosischain.com",
       accounts: process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
@@ -57,20 +100,6 @@ const config: HardhatUserConfig = {
         },
       },
     },
-    goerli: {
-      chainId: 5,
-      url: `https://goerli.infura.io/v3/${process.env.INFURA_KEY}`,
-      accounts: process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
-      live: true,
-      saveDeployments: true,
-      tags: ["staging"],      
-      verify: {
-        etherscan: {
-          apiKey: etherscanApis["5"],
-          apiUrl: "https://goerli.etherscan.io/"
-        },
-      },
-    }
   },
   namedAccounts: {
     deployer: {
@@ -84,11 +113,11 @@ const config: HardhatUserConfig = {
     enabled: process.env.REPORT_GAS !== undefined,
     currency: "USD",
   },
-  verify: {
-    etherscan: {
-      apiKey: process.env.ETHERSCAN_API_KEY_FIX,
-    },
-  },
+  // verify: {
+  //   etherscan: {
+  //     apiKey: process.env.ETHERSCAN_API_KEY_FIX,
+  //   },
+  // },
   watcher: {
     compilation: {
       tasks: ["compile"],
