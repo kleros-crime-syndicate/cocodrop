@@ -1,4 +1,5 @@
 import request from "graphql-request";
+import { Share, Strategy } from "types";
 
 const getBatch = async (first: number, skip: number): Promise<string[]> => {
   const query = `{
