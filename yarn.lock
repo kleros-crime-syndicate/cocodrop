@@ -794,6 +794,7 @@ __metadata:
   dependencies:
     "@graphprotocol/graph-cli": ^0.34.0
     "@graphprotocol/graph-ts": ^0.28.0
+    mustache: ^4.0.1
   languageName: unknown
   linkType: soft
 
@@ -16666,6 +16667,15 @@ __metadata:
   version: 3.0.1
   resolution: "murmurhash3js@npm:3.0.1"
   checksum: 8111d0d94bcd7b61d8b47d69e798a3ba4323c8a639cd789ad6259e9e8f319565451b9e1164d321db0b36b1f067202e34532288da4bb587b449052ff677d5281c
+  languageName: node
+  linkType: hard
+
+"mustache@npm:^4.0.1":
+  version: 4.2.0
+  resolution: "mustache@npm:4.2.0"
+  bin:
+    mustache: bin/mustache
+  checksum: 928fcb63e3aa44a562bfe9b59ba202cccbe40a46da50be6f0dd831b495be1dd7e38ca4657f0ecab2c1a89dc7bccba0885eab7ee7c1b215830da765758c7e0506
   languageName: node
   linkType: hard
 

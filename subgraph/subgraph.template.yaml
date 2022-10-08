@@ -8,9 +8,9 @@ dataSources:
     name: Cocodrop
     network: {{network}}
     source:
-      address: '{{LightGTCRFactory.address}}'
+      address: '{{Cocodrop.address}}'
       abi: Cocodrop
-      startBlock: {{LightGTCRFactory.startBlock}}
+      startBlock: {{Cocodrop.startBlock}}
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
