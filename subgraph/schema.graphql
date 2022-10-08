@@ -23,8 +23,9 @@ type Redeemer @entity {
   "Address of the redeemer"
   id: ID!
   "Airdrops this Redeemer took part in"
-  airdrops: [Aidrop!]! @derivedFrom(field: "redeemers")
+  airdrops: [Airdrop!]! @derivedFrom(field: "redeemers")
   "Redemptions by this user"
+  redemptions: [Redemption!]! @derivedFrom(field: "redeemer")
 }
 
 type Redemption @entity {

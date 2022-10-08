@@ -1,0 +1,30 @@
+specVersion: 0.0.4
+description: Cocodrop
+repository: https://github.com/kleros-crime-syndicate/cocodrop
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: Cocodrop
+    network: goerli
+    source:
+      address: '0xD7f75B5fE84866fce76d5C3341B00DC40886c495'
+      abi: Cocodrop
+      startBlock: 7735080
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Airdrop
+        - Redeemer
+        - Redemption
+      abis:
+        - name: Cocodrop
+          file: ./abis/Cocodrop.json
+      eventHandlers:
+        - event: NewAirdrop(indexed uint256,bytes32,address,uint256,string)
+          handler: handleNewAirdrop
+        - event: Redemption(indexed uint256,uint256)
+          handler: handleRedemption
+      file: ./src/mapping.ts

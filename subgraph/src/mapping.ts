@@ -32,7 +32,7 @@ export function handleRedemption(event: RedemptionEvent): void {
     redeemer = new Redeemer(event.transaction.from.toString())
     redeemer.save()
   }
-  let airdrop = Airdrop.load(event.params.airdropId.toString())
+  let airdrop = Airdrop.load(event.params.airdropId.toString()) as Airdrop
   // add redeemer to airdrop (this is a terrible idea)
   airdrop.redeemers.push(redeemer.id) // ????????/????????????????????
   airdrop.save()
