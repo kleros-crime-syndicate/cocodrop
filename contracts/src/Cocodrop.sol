@@ -72,14 +72,8 @@ contract Cocodrop {
         view
         returns (bool valid)
     {
-      bytes32 leaf;
-      address sender = msg.sender;
-      assembly {
-        // efficient hash abi.encode(msg.sender, _claimedAmount)
-        mstore(0x00, sender)
-        mstore(0x20, _claimedAmount)
-        leaf := keccak256(0x00, 0x40)
-      }
+      // less gas efficient than assembly, but this suffices for v1
+      bytes32 leaf = abi.encodePacked(msg.sender, _claimedAmount);
       return MerkleProof.verify(_merkleProof, airdrops[_airdropId].merkleRoot, leaf);
     }
 }
