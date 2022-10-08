@@ -14,6 +14,8 @@ import "hardhat-contract-sizer";
 
 dotenv.config();
 
+const etherscanApis: any = process.env.ETHERSCAN_APIS
+
 const config: HardhatUserConfig = {
   solidity: {
     version: "0.8.17",
@@ -41,17 +43,17 @@ const config: HardhatUserConfig = {
       tags: ["test", "local"],
     },
 
-    mumbai: {
-      chainId: 80001,
-      url: "https://rpc.ankr.com/polygon_mumbai",
+    xdai: {
+      chainId: 100,
+      url: "https://rpc.gnosischain.com",
       accounts: process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
       live: true,
       saveDeployments: true,
-      tags: ["staging"],      
+      tags: ["production"],      
       verify: {
         etherscan: {
-          apiKey: process.env.ARBISCAN_API_KEY,
-          apiUrl: "https://api-testnet.polygonscan.com/"
+          apiKey: etherscanApis["100"],
+          apiUrl: "https://gnosisscan.io/"
         },
       },
     }
