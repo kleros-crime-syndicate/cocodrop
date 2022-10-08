@@ -8,7 +8,7 @@
 </b>
 
 <p align="center">
-  <a href="https://app.netlify.com/sites/cocodrop/deploys"><img src="https://api.netlify.com/api/v1/badges/XXXX/deploy-status" alt="Netlify Build Status"></a>
+  <a href="https://app.netlify.com/sites/cocodrop/deploys"><img src="https://api.netlify.com/api/v1/badges/4c35592a-bbba-4c08-860a-7c83bb80314c/deploy-status" alt="Netlify Build Status"></a>
   </br>
   <a href="https://github.com/kleros-crime-syndicate/cocodrop/actions/workflows/contracts-testing.yml"><img src="https://github.com/kleros-crime-syndicate/cocodrop/actions/workflows/contracts-testing.yml/badge.svg?branch=master" alt="Unit testing"></a>
   <a href="https://conventionalcommits.org"><img src="https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg" alt="Conventional Commits"></a>
