@@ -10,7 +10,7 @@
 pragma solidity ^0.8.17;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import "@openzeppelin/contracts/cryptography/MerkleProof.sol";
+import "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol";
 
 /**
  * @title Cocodrop
@@ -42,7 +42,7 @@ contract Cocodrop {
     emit NewAirdrop(airdrops.length - 1, _merkleRoot, _token, _amount, _ipfs);
   }
 
-  function redeem(uint256 _airdropId, uint256 _claimedAmount, byte32[] memory _merkleProof) public {
+  function redeem(uint256 _airdropId, uint256 _claimedAmount, bytes32[] memory _merkleProof) public {
     uint256 airdropBalance = airdrops[_airdropId].amount;
     // check
     require(_claimedAmount <= airdropBalance, "Insufficient airdrop balance.");
@@ -52,13 +52,13 @@ contract Cocodrop {
     redeemed[_airdropId][msg.sender] = true;
     airdrops[_airdropId].amount -= airdropBalance - _claimedAmount;
     // transfer goes here
-    airdrop.token.transfer(msg.sender, _claimedAmount);
-    emit Redemption(_airdropId, amount);
+    airdrops[_airdropId].token.transfer(msg.sender, _claimedAmount);
+    emit Redemption(_airdropId, _claimedAmount);
   }
 
     /**
      * @notice Verifies a claim.
-     * @param _claimedBalance The amount being claimed.
+     * @param _claimedAmount The amount being claimed.
      * @param _merkleProof The merkle proof for the claim, sorted from the leaf to the root of the tree.
      * @param _airdropId The id of the airdrop.
      */
@@ -72,9 +72,10 @@ contract Cocodrop {
         returns (bool valid)
     {
       bytes32 leaf;
+      address sender = msg.sender;
       assembly {
         // efficient hash abi.encode(msg.sender, _claimedAmount)
-        mstore(0x00, msg.sender)
+        mstore(0x00, sender)
         mstore(0x20, _claimedAmount)
         leaf := keccak256(0x00, 0x40)
       }

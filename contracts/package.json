@@ -12,7 +12,7 @@
   "scripts": {
     "build": "hardhat compile",
     "clean": "hardhat clean",
-    "deploy": "hardhat deploy",
+    "deploy": "npx hardhat run scripts/deploy.ts --network goerli",
     "deploy:staging": "run-s \"deploy --network rinkeby {@}\" \"deploy --network arbitrumRinkeby {@}\" --",
     "test": "hardhat test",
     "watch": "hardhat watch",
@@ -22,6 +22,7 @@
   },
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "npm:hardhat-deploy-ethers@0.3.0-beta.13",
+    "@nomiclabs/hardhat-etherscan": "^3.0.3",
     "@nomiclabs/hardhat-waffle": "^2.0.3",
     "@openzeppelin/contracts": "^4.7.0",
     "@tenderly/hardhat-tenderly": "^1.1.3",

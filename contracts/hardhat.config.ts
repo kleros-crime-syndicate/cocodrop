@@ -56,6 +56,20 @@ const config: HardhatUserConfig = {
           apiUrl: "https://gnosisscan.io/"
         },
       },
+    },
+    goerli: {
+      chainId: 5,
+      url: `https://goerli.infura.io/v3/${process.env.INFURA_KEY}`,
+      accounts: process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
+      live: true,
+      saveDeployments: true,
+      tags: ["staging"],      
+      verify: {
+        etherscan: {
+          apiKey: etherscanApis["5"],
+          apiUrl: "https://goerli.etherscan.io/"
+        },
+      },
     }
   },
   namedAccounts: {
