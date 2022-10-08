@@ -10,6 +10,10 @@ module.exports = {
         "theme-darkish": "#8600B3",
         background: "#1A161F",
       },
+      fontFamily: {
+        sans: ["Roboto", ...defaultTheme.fontFamily.sans],
+        display: ["Kavoon"],
+      },
       keyframes: {},
     },
   },

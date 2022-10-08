@@ -1,12 +1,16 @@
 import React from "react";
-import CocoDrop from "assets/logo-cocodrop.svg";
-import Background from "assets/background-hero.webp";
+import CocoLogo from "assets/cocologo.svg";
+import background from "assets/cocodrop-bg.jpg";
 
 const Hero: React.FC = () => {
-  console.log("hey", Background);
+  console.log("hey", background);
   return (
-    <div style={{"backgroundImage": `url('${Background}')`}} className="bg-cover bg-no-repeat bg-center h-screen flex items-center justify-center">
-      <CocoDrop className="h-1/3" />
+    <div
+      style={{ backgroundImage: `url('${background}')` }}
+      className="bg-cover bg-no-repeat bg-center h-screen flex flex-col items-center justify-center"
+    >
+      <CocoLogo className="w-1/3" />
+      <span className="text-9xl font-display text-white">Drop</span>
     </div>
   );
 };
