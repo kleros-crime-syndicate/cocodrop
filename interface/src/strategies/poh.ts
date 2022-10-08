@@ -32,3 +32,5 @@ const pohStrategy = async () => {
     weights: weightedHumans,
   };
 };
+
+export default pohStrategy
