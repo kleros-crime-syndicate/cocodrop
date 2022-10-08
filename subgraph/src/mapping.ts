@@ -18,10 +18,6 @@ export function handleNewAirdrop(event: NewAirdrop): void {
   airdrop.remainingAmount = event.params.amount
   airdrop.token = event.params.token
   airdrop.ipfs = event.params.ipfs
-  //todo, dunno arrays.
-  // arrays were a terrible idea anyway
-  airdrop.redeemers = [] // ??????????????
-  
   airdrop.save()
 }
 
@@ -30,16 +26,17 @@ export function handleRedemption(event: RedemptionEvent): void {
   let redeemer = Redeemer.load(event.transaction.from.toString())
   if (!redeemer) {
     redeemer = new Redeemer(event.transaction.from.toString())
+    redeemer.airdrops = []
     redeemer.save()
   }
-  let airdrop = Airdrop.load(event.params.airdropId.toString()) as Airdrop
-  // add redeemer to airdrop (this is a terrible idea)
-  airdrop.redeemers.push(redeemer.id) // ????????/????????????????????
-  airdrop.save()
 
-  let redemption = new Redemption(`${airdrop.id}@${redeemer.id}`)
+  let airdropId = event.params.airdropId.toString()
+  
+  redeemer.airdrops.push(airdropId)
+
+  let redemption = new Redemption(`${airdropId}@${redeemer.id}`)
   redemption.redeemer = redeemer.id
   redemption.amount = event.params.amount
-  redemption.airdrop = airdrop.id
+  redemption.airdrop = airdropId
   redemption.save()
 }

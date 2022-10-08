@@ -14,7 +14,7 @@ type Airdrop @entity {
   "Ipfs file containing the merkle drop"
   ipfs: String!
   "Redeemers array"
-  redeemers: [Redeemer!]!
+  redeemers: [Redeemer!]! @derivedFrom(field: "airdrops")
   "Redemptions"
   redemptions: [Redemption!]! @derivedFrom(field: "airdrop")
 }
@@ -23,7 +23,7 @@ type Redeemer @entity {
   "Address of the redeemer"
   id: ID!
   "Airdrops this Redeemer took part in"
-  airdrops: [Airdrop!]! @derivedFrom(field: "redeemers")
+  airdrops: [Airdrop!]!
   "Redemptions by this user"
   redemptions: [Redemption!]! @derivedFrom(field: "redeemer")
 }
