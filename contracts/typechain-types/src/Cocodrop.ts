@@ -33,6 +33,7 @@ export interface CocodropInterface extends utils.Interface {
     "createAirdrop(bytes32,address,uint256,string)": FunctionFragment;
     "redeem(uint256,uint256,bytes32[])": FunctionFragment;
     "redeemed(uint256,address)": FunctionFragment;
+    "stopAirdrop(uint256)": FunctionFragment;
     "verifyClaim(uint256,uint256,bytes32[])": FunctionFragment;
   };
 
@@ -42,6 +43,7 @@ export interface CocodropInterface extends utils.Interface {
       | "createAirdrop"
       | "redeem"
       | "redeemed"
+      | "stopAirdrop"
       | "verifyClaim"
   ): FunctionFragment;
 
@@ -71,6 +73,10 @@ export interface CocodropInterface extends utils.Interface {
     values: [PromiseOrValue<BigNumberish>, PromiseOrValue<string>]
   ): string;
   encodeFunctionData(
+    functionFragment: "stopAirdrop",
+    values: [PromiseOrValue<BigNumberish>]
+  ): string;
+  encodeFunctionData(
     functionFragment: "verifyClaim",
     values: [
       PromiseOrValue<BigNumberish>,
@@ -87,6 +93,10 @@ export interface CocodropInterface extends utils.Interface {
   decodeFunctionResult(functionFragment: "redeem", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "redeemed", data: BytesLike): Result;
   decodeFunctionResult(
+    functionFragment: "stopAirdrop",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
     functionFragment: "verifyClaim",
     data: BytesLike
   ): Result;
@@ -94,10 +104,12 @@ export interface CocodropInterface extends utils.Interface {
   events: {
     "NewAirdrop(uint256,bytes32,address,uint256,string)": EventFragment;
     "Redemption(uint256,uint256)": EventFragment;
+    "StoppedAirdrop(uint256)": EventFragment;
   };
 
   getEvent(nameOrSignatureOrTopic: "NewAirdrop"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "Redemption"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "StoppedAirdrop"): EventFragment;
 }
 
 export interface NewAirdropEventObject {
@@ -124,6 +136,16 @@ export type RedemptionEvent = TypedEvent<
 >;
 
 export type RedemptionEventFilter = TypedEventFilter<RedemptionEvent>;
+
+export interface StoppedAirdropEventObject {
+  airdropId: BigNumber;
+}
+export type StoppedAirdropEvent = TypedEvent<
+  [BigNumber],
+  StoppedAirdropEventObject
+>;
+
+export type StoppedAirdropEventFilter = TypedEventFilter<StoppedAirdropEvent>;
 
 export interface Cocodrop extends BaseContract {
   connect(signerOrProvider: Signer | Provider | string): this;
@@ -156,7 +178,8 @@ export interface Cocodrop extends BaseContract {
       arg0: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<
-      [string, string, BigNumber] & {
+      [string, string, string, BigNumber] & {
+        owner: string;
         merkleRoot: string;
         token: string;
         amount: BigNumber;
@@ -184,6 +207,11 @@ export interface Cocodrop extends BaseContract {
       overrides?: CallOverrides
     ): Promise<[boolean]>;
 
+    stopAirdrop(
+      _airdropId: PromiseOrValue<BigNumberish>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
+
     verifyClaim(
       _airdropId: PromiseOrValue<BigNumberish>,
       _claimedAmount: PromiseOrValue<BigNumberish>,
@@ -196,7 +224,8 @@ export interface Cocodrop extends BaseContract {
     arg0: PromiseOrValue<BigNumberish>,
     overrides?: CallOverrides
   ): Promise<
-    [string, string, BigNumber] & {
+    [string, string, string, BigNumber] & {
+      owner: string;
       merkleRoot: string;
       token: string;
       amount: BigNumber;
@@ -224,6 +253,11 @@ export interface Cocodrop extends BaseContract {
     overrides?: CallOverrides
   ): Promise<boolean>;
 
+  stopAirdrop(
+    _airdropId: PromiseOrValue<BigNumberish>,
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
+  ): Promise<ContractTransaction>;
+
   verifyClaim(
     _airdropId: PromiseOrValue<BigNumberish>,
     _claimedAmount: PromiseOrValue<BigNumberish>,
@@ -236,7 +270,8 @@ export interface Cocodrop extends BaseContract {
       arg0: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<
-      [string, string, BigNumber] & {
+      [string, string, string, BigNumber] & {
+        owner: string;
         merkleRoot: string;
         token: string;
         amount: BigNumber;
@@ -263,6 +298,11 @@ export interface Cocodrop extends BaseContract {
       arg1: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<boolean>;
+
+    stopAirdrop(
+      _airdropId: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<void>;
 
     verifyClaim(
       _airdropId: PromiseOrValue<BigNumberish>,
@@ -296,6 +336,13 @@ export interface Cocodrop extends BaseContract {
       airdropId?: PromiseOrValue<BigNumberish> | null,
       amount?: null
     ): RedemptionEventFilter;
+
+    "StoppedAirdrop(uint256)"(
+      airdropId?: PromiseOrValue<BigNumberish> | null
+    ): StoppedAirdropEventFilter;
+    StoppedAirdrop(
+      airdropId?: PromiseOrValue<BigNumberish> | null
+    ): StoppedAirdropEventFilter;
   };
 
   estimateGas: {
@@ -323,6 +370,11 @@ export interface Cocodrop extends BaseContract {
       arg0: PromiseOrValue<BigNumberish>,
       arg1: PromiseOrValue<string>,
       overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    stopAirdrop(
+      _airdropId: PromiseOrValue<BigNumberish>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
     verifyClaim(
@@ -358,6 +410,11 @@ export interface Cocodrop extends BaseContract {
       arg0: PromiseOrValue<BigNumberish>,
       arg1: PromiseOrValue<string>,
       overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    stopAirdrop(
+      _airdropId: PromiseOrValue<BigNumberish>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
     verifyClaim(
