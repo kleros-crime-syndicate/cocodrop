@@ -2,7 +2,7 @@ import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { DeployFunction } from "hardhat-deploy/types";
 import { BigNumber } from "ethers";
 
-const deployHarbs: DeployFunction = async (hre: HardhatRuntimeEnvironment) => {
+const deployCocodrop: DeployFunction = async (hre: HardhatRuntimeEnvironment) => {
   const { deployments, getNamedAccounts, getChainId } = hre;
   const { deploy, execute } = deployments;
   const { AddressZero } = hre.ethers.constants;
@@ -15,26 +15,13 @@ const deployHarbs: DeployFunction = async (hre: HardhatRuntimeEnvironment) => {
   if (chainId === "31337") {
     // Hardhat network
     console.log("Hardhat network");
-    erc20Address = (
-      await deploy("Currency", {
-        from: deployer,
-        args: ["Harberger Ads Currency", "HAC", BigNumber.from(10).pow(18 + 6)],
-        log: true,
-      })
-    ).address;
+    
   } else if (chainId === "80001") {
     // Mumbai wMATIC
     erc20Address = "0x9c3C9283D3e44854697Cd22D3Faa240Cfb032889";
   }
 
-  // Only for verification on PolygonScan, otherwise the ABI will remain unknown.
-  await deploy("HarbergerAdsFull", {
-    from: deployer,
-    args: [2000, 100, erc20Address, deployer, "Harberger Ads - EthCC Hack 2022", "HAC"],
-    log: true,
-  });
-
-  const factory = await deploy("HarbergerAdsFactory", {
+  const factory = await deploy("Factory", {
     from: deployer,
     args: [],
     log: true,
@@ -42,7 +29,7 @@ const deployHarbs: DeployFunction = async (hre: HardhatRuntimeEnvironment) => {
   });
 
   await execute(
-    "HarbergerAdsFactory",
+    "Factory",
     { from: deployer, log: true },
     "create",
     3,
@@ -50,11 +37,11 @@ const deployHarbs: DeployFunction = async (hre: HardhatRuntimeEnvironment) => {
     100,
     erc20Address,
     deployer,
-    "Harberger Ads - EthCC Hack 2022",
-    "HAC",
-    "ipfs/QmYmLeBs4pZcX2qD9Lup2SxKJGWHFFRpDhC4JDjsgJVXgt/harbs.json"
+    "",
+    "",
+    "ipfs/xxx"
   );
 };
 
-deployHarbs.tags = ["Harbs"];
-export default deployHarbs;
+deployCocodrop.tags = ["Cocodrop"];
+export default deployCocodrop;

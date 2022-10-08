@@ -1,5 +1,5 @@
 {
-  "name": "harbs",
+  "name": "Cocodrop",
   "version": "0.1.0",
   "description": "Cocodrop",
   "main": "index.js",
@@ -10,7 +10,7 @@
   "workspaces": [
     "contracts",
     "subgraph",
-    "web"
+    "interface"
   ],
   "packageManager": "yarn@3.1.1",
   "volta": {
