@@ -25,6 +25,6 @@ dataSources:
       eventHandlers:
         - event: NewAirdrop(indexed uint256,bytes32,address,uint256,string)
           handler: handleNewAirdrop
-        - event: Redemption(indexed uint256,address,uint256)
+        - event: Redemption(indexed uint256,uint256)
           handler: handleRedemption
       file: ./src/mapping.ts

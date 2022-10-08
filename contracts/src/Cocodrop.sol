@@ -50,7 +50,7 @@ contract Cocodrop {
     require(verifyClaim(_airdropId, _claimedAmount, _merkleProof), "Invalid redemption.");
     // effects
     redeemed[_airdropId][msg.sender] = true;
-    airdrops[_airdropId].amount -= airdropBalance - _claimedAmount;
+    airdrops[_airdropId].amount -= _claimedAmount;
     // transfer goes here
     airdrops[_airdropId].token.transfer(msg.sender, _claimedAmount);
     emit Redemption(_airdropId, _claimedAmount);

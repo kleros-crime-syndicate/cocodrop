@@ -28,7 +28,7 @@ type Redeemer @entity {
 }
 
 type Redemption @entity {
-  "<airdropId>-<redeemerId>"
+  "<airdropId>@<redeemerId>"
   id: ID!
   "The recipient of the redemption"
   redeemer: Redeemer!
