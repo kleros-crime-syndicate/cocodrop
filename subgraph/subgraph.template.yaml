@@ -17,6 +17,7 @@ dataSources:
       language: wasm/assemblyscript
       entities:
         - Airdrop
+        - Redeemer
         - Redemption
       abis:
         - name: Cocodrop

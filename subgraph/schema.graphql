@@ -3,6 +3,8 @@ type Airdrop @entity {
   id: ID!
   "Id of the airdrop"
   airdropId: BigInt!
+  "Address of the donor"
+  donor: Bytes!
   "How much amount was this airdrop created with"
   originalAmount: BigInt!
   "How much token does this airdrop still contain"
@@ -11,13 +13,25 @@ type Airdrop @entity {
   token: Bytes!
   "Ipfs file containing the merkle drop"
   ipfs: String!
+  "Redeemers array"
+  redeemers: [Redeemer!]!
+  "Redemptions"
+  redemptions: [Redemption!]! @derivedFrom(field: "airdrop")
+}
+
+type Redeemer @entity {
+  "Address of the redeemer"
+  id: ID!
+  "Airdrops this Redeemer took part in"
+  airdrops: [Aidrop!]! @derivedFrom(field: "redeemers")
+  "Redemptions by this user"
 }
 
 type Redemption @entity {
-  "<airdropId>-<redeemer>"
+  "<airdropId>-<redeemerId>"
   id: ID!
   "The recipient of the redemption"
-  reciever: Bytes!
+  redeemer: Redeemer!
   "The amount that was withdrawn"
   amount: BigInt!
   "Reference to the airdrop"
