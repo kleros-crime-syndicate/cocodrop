@@ -1,0 +1,25 @@
+type Airdrop @entity {
+  "String of the airdropId"
+  id: ID!
+  "Id of the airdrop"
+  airdropId: BigInt!
+  "How much amount was this airdrop created with"
+  originalAmount: BigInt!
+  "How much token does this airdrop still contain"
+  remainingAmount: BigInt!
+  "Address of the token the airdrop dispersed"
+  token: Bytes!
+  "Ipfs file containing the merkle drop"
+  ipfs: String!
+}
+
+type Redemption @entity {
+  "<airdropId>-<redeemer>"
+  id: ID!
+  "The recipient of the redemption"
+  reciever: Bytes!
+  "The amount that was withdrawn"
+  amount: BigInt!
+  "Reference to the airdrop"
+  airdrop: Airdrop!
+}
