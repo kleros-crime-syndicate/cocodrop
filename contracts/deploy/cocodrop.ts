@@ -11,18 +11,12 @@ const deployCocodrop: DeployFunction = async (hre: HardhatRuntimeEnvironment) =>
   const deployer = (await getNamedAccounts()).deployer ?? (await hre.ethers.getSigners())[0].address;
 
   const chainId = await getChainId();
-  if (chainId === "31337") {
-    // Hardhat network
-    console.log("Hardhat network");
-    await deploy("Cocodrop", {
-        from: deployer,        
-        log: true,
-      });
 
-  } else if (chainId === "80001") {
-    // Mumbai wMATIC
-    erc20Address = "0x9c3C9283D3e44854697Cd22D3Faa240Cfb032889";
-  }
+  await deploy("Cocodrop", {
+    from: deployer,        
+    log: true,
+  });
+
 };
 
 deployCocodrop.tags = ["Cocodrop"];

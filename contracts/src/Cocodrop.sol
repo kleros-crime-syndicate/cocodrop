@@ -1,10 +1,11 @@
+// SPDX-License-Identifier: MIT
+
 /**
  * @authors: [@greenlucid, @shotaronowhere]
  * @reviewers: []
  * @auditors: []
  * @bounties: []
  * @deployments: []
- * SPDX-License-Identifier: Licenses are not real
  */
 
 pragma solidity ^0.8.17;
