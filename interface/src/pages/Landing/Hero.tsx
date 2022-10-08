@@ -1,14 +1,29 @@
 import React from "react";
+import cn from "classnames";
 import CocoLogo from "assets/cocologo.svg";
 import background from "assets/cocodrop-bg.jpg";
 
 const Hero: React.FC = () => {
-  console.log("hey", background);
   return (
     <div
       style={{ backgroundImage: `url('${background}')` }}
       className="bg-cover bg-no-repeat bg-center h-screen flex flex-col items-center justify-center"
     >
+      <button
+        className={cn(
+          "absolute",
+          "top-10",
+          "bg-white",
+          "px-6",
+          "py-3",
+          "rounded-3xl",
+          "font-display",
+          "mix-blend-screen",
+          "text-6xl"
+        )}
+      >
+        Use dApp
+      </button>
       <CocoLogo className="w-1/3" />
       <span className="text-9xl font-display text-white">Drop</span>
     </div>
