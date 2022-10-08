@@ -25,7 +25,7 @@ contract Cocodrop {
   }
 
   event NewAirdrop(uint256 indexed airdropId, bytes32 merkleRoot, IERC20 token, uint256 amount, string ipfs);
-  event Redemption(uint256 indexed airdropId, address receiver);
+  event Redemption(uint256 indexed airdropId, address receiver, uint256 amount);
 
   Airdrop[] public airdrops;
   mapping(uint256 => mapping(address => bool)) public redeemed;
@@ -48,6 +48,7 @@ contract Cocodrop {
     redeemed[_airdropId][_receiver] = true;
     // reduce the amount of the airdrop by the amount redeemed
     // transfer goes here
-    emit Redemption(_airdropId, receiver);
+    uint256 amount = 0; // made up, please change
+    emit Redemption(_airdropId, receiver, amount);
   }
 }
