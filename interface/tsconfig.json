@@ -26,6 +26,7 @@
             "api/*": ["api/*"],
             "assets/*": ["assets/*"],
             "components/*": ["components/*"],
+            "strategies/*": ["strategies/*"],
             "constants/*": ["constants/*"],
             "generated/*": ["generated/*"],
             "hooks/*": ["hooks/*"],

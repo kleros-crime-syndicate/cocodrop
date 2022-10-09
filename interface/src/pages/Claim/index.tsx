@@ -4,8 +4,8 @@ const Claim: React.FC = () => {
   return(
     <div>
       <div>
-        <button></button>
-        <button></button>
+        <button>Create CocoDrop</button>
+        <button>Connect</button>
       </div>
     </div>
   );

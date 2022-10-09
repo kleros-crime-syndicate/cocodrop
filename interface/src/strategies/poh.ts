@@ -36,8 +36,8 @@ const pohCompute = async (): Promise<{totalWeight: number, shares: Share[]}> => 
 const pohStrategy: Strategy = {
   name: "Proof of Humanity",
   description: "Every registered human gets one share",
-  logoUri: "https://image.com/thing.png",
+  logoUri: "https://github.com/Proof-Of-Humanity/proof-of-humanity-web/raw/master/assets/sample-evidence/photo.png",
   computeShares: pohCompute
-}
+};
 
-export default pohStrategy
+export default pohStrategy;

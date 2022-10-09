@@ -703,8 +703,8 @@ __metadata:
     "@types/chai": ^4.3.3
     "@types/mocha": ^10.0.0
     "@types/node": ^16
-    "@typescript-eslint/eslint-plugin": ^5.30.0
-    "@typescript-eslint/parser": ^5.30.0
+    "@typescript-eslint/eslint-plugin": ^5.39.0
+    "@typescript-eslint/parser": ^5.39.0
     chai: ^4.3.6
     chai-ethers: ^0.0.1
     dotenv: ^16.0.1
@@ -745,8 +745,8 @@ __metadata:
     "@parcel/transformer-svg-react": ^2.5.0
     "@types/react": ^18.0.1
     "@types/react-dom": ^18.0.0
-    "@typescript-eslint/eslint-plugin": ^5.19.0
-    "@typescript-eslint/parser": ^5.19.0
+    "@typescript-eslint/eslint-plugin": ^5.39.0
+    "@typescript-eslint/parser": ^5.39.0
     "@web3-react/core": ^6.1.9
     "@web3-react/injected-connector": ^6.0.7
     "@web3-react/network-connector": ^6.2.9
@@ -760,7 +760,7 @@ __metadata:
     eslint-plugin-node: ^11.1.0
     eslint-plugin-prettier: ^4.2.1
     eslint-plugin-promise: ^5.2.0
-    eslint-plugin-react: ^7.29.4
+    eslint-plugin-react: ^7.31.8
     events: ^3.3.0
     formik: ^2.2.9
     graphql: ^16.4.0
@@ -4675,7 +4675,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/eslint-plugin@npm:^5.19.0, @typescript-eslint/eslint-plugin@npm:^5.30.0":
+"@typescript-eslint/eslint-plugin@npm:^5.39.0":
   version: 5.39.0
   resolution: "@typescript-eslint/eslint-plugin@npm:5.39.0"
   dependencies:
@@ -4697,7 +4697,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/parser@npm:^5.19.0, @typescript-eslint/parser@npm:^5.30.0":
+"@typescript-eslint/parser@npm:^5.39.0":
   version: 5.39.0
   resolution: "@typescript-eslint/parser@npm:5.39.0"
   dependencies:
@@ -10097,7 +10097,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-react@npm:^7.29.4":
+"eslint-plugin-react@npm:^7.31.8":
   version: 7.31.8
   resolution: "eslint-plugin-react@npm:7.31.8"
   dependencies:
