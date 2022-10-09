@@ -14,7 +14,7 @@ import "hardhat-contract-sizer";
 
 dotenv.config();
 
-const etherscanApis: any = process.env.ETHERSCAN_APIS
+const etherscanApis: any = JSON.parse(process.env.ETHERSCAN_APIS !== undefined ? process.env.ETHERSCAN_APIS : "")
 
 const config: HardhatUserConfig = {
   solidity: {
@@ -52,8 +52,7 @@ const config: HardhatUserConfig = {
       tags: ["staging"],      
       verify: {
         etherscan: {
-          apiKey: etherscanApis["5"],
-          apiUrl: "https://goerli.etherscan.io/"
+          apiKey: etherscanApis["5"]
         },
       },
     },

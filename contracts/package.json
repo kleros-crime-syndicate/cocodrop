@@ -12,7 +12,7 @@
   "scripts": {
     "build": "hardhat compile",
     "clean": "hardhat clean",
-    "deploy": "npx hardhat run scripts/deploy.ts --network goerli",
+    "deploy": "hardhat deploy",
     "deploy:staging": "run-s \"deploy --network rinkeby {@}\" \"deploy --network arbitrumRinkeby {@}\" --",
     "test": "hardhat test",
     "watch": "hardhat watch",

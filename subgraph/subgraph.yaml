@@ -6,14 +6,14 @@ schema:
 dataSources:
   - kind: ethereum
     name: Cocodrop
-    network: goerli
+    network: mumbai
     source:
-      address: '0xD7f75B5fE84866fce76d5C3341B00DC40886c495'
+      address: '0x03E60Ab34f2BEC975610526E6436872c1a2F0230'
       abi: Cocodrop
-      startBlock: 7735080
+      startBlock: 28517442
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.6
+      apiVersion: 0.0.5
       language: wasm/assemblyscript
       entities:
         - Airdrop
@@ -21,7 +21,7 @@ dataSources:
         - Redemption
       abis:
         - name: Cocodrop
-          file: ./abis/Cocodrop.json
+          file: ./abis/mumbai/Cocodrop.json
       eventHandlers:
         - event: NewAirdrop(indexed uint256,bytes32,address,uint256,string)
           handler: handleNewAirdrop

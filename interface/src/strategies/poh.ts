@@ -1,4 +1,5 @@
 import request from "graphql-request";
+import { Share, Strategy } from "types";
 
 const getBatch = async (first: number, skip: number): Promise<string[]> => {
   const query = `{
@@ -20,6 +21,7 @@ const getAllHumans = async (): Promise<string[]> => {
     const humans = await getBatch(1000, skip);
     batches.push(humans);
     if (humans.length < 1000) break;
+    skip += 1000;
   }
   return batches.flat(1);
 };

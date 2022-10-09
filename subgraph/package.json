@@ -2,9 +2,13 @@
   "name": "@cocodrop/cocodrop-subgraph",
   "license": "MIT",
   "scripts": {
+    "render": "node render-templates.js",
     "codegen": "graph codegen",
     "build": "graph build",
-    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ kleros-crime-syndicate/cocodrop-mumbai",
+    "deploy:mumbai": "graph deploy --node https://api.thegraph.com/deploy/ kleros-crime-syndicate/cocodrop-mumbai",
+    "deploy:goerli": "graph deploy --node https://api.thegraph.com/deploy/ kleros-crime-syndicate/cocodrop-goerli",
+    "deploy:gnosischain": "graph deploy --node https://api.thegraph.com/deploy/ kleros-crime-syndicate/cocodrop-gnosischain",
+    "deploy:polygon": "graph deploy --node https://api.thegraph.com/deploy/ kleros-crime-syndicate/cocodrop-polygon",
     "create-local": "graph create --node http://localhost:8020/ kleros-crime-syndicate/cocodrop-mumbai",
     "remove-local": "graph remove --node http://localhost:8020/ kleros-crime-syndicate/cocodrop-mumbai",
     "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 kleros-crime-syndicate/cocodrop-mumbai"
