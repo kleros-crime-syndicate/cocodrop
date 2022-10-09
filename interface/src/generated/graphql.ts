@@ -475,6 +475,13 @@ export type AirdropsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type AirdropsQuery = { __typename?: 'Query', airdrops: Array<{ __typename?: 'Airdrop', id: string, airdropId: any, donor: any, originalAmount: any, token: any, ipfs: string }> };
 
+export type RedemptionQueryVariables = Exact<{
+  id: Scalars['ID'];
+}>;
+
+
+export type RedemptionQuery = { __typename?: 'Query', redemption?: { __typename?: 'Redemption', id: string } | null };
+
 
 export const AirdropsDocument = gql`
     query Airdrops {
@@ -488,6 +495,13 @@ export const AirdropsDocument = gql`
   }
 }
     `;
+export const RedemptionDocument = gql`
+    query Redemption($id: ID!) {
+  redemption(id: $id) {
+    id
+  }
+}
+    `;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string) => Promise<T>;
 
@@ -498,6 +512,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
   return {
     Airdrops(variables?: AirdropsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<AirdropsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<AirdropsQuery>(AirdropsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'Airdrops', 'query');
+    },
+    Redemption(variables: RedemptionQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<RedemptionQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<RedemptionQuery>(RedemptionDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'Redemption', 'query');
     }
   };
 }

@@ -1,6 +1,9 @@
 export interface IpfsFile {
-  name: string;
-  description: string;
+  metadata: {
+    title: string;
+    description: string;
+    strategy?: string;
+  };
   merkleTree: Record<
     string,
     {

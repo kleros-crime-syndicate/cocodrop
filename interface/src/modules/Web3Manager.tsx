@@ -1,7 +1,8 @@
 import { Web3Provider } from "@ethersproject/providers";
 import { Web3ReactProvider } from "@web3-react/core";
-import { useConnect } from "hooks/useConnect";
+// import { useConnect } from "hooks/useConnect";
 import useWeb3 from "hooks/useWeb3";
+import { useEffect } from "react";
 
 const getLibrary = (provider: any): Web3Provider =>
   new Web3Provider(
@@ -14,10 +15,23 @@ const getLibrary = (provider: any): Web3Provider =>
   );
 
 const Web3Connect: React.FC<{ children: JSX.Element }> = ({ children }) => {
-  const { tried, error } = useConnect();
-  const { active } = useWeb3();
+  // const { tried } = useConnect();
+  const { error } = useWeb3();
 
-  if (!active && tried && error) return <div>Error occured</div>;
+  useEffect(() => {
+    console.log(error);
+  }, [error]);
+  // console.log(error?.name, tried, active);
+  // if (
+  //   !active &&
+  //   tried &&
+  //   error &&
+  //   error?.name !== "UserRejectedRequestError" &&
+  //   error?.name !== "UnsupportedChainIdError" &&
+  //   error?.name !== "NoEthereumProviderError" &&
+  //   error.message !== "Already processing eth_requestAccounts. Please wait."
+  // )
+  //   return <div>Error occured</div>;
 
   return children;
 };

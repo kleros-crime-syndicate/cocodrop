@@ -1,10 +1,9 @@
 import { useWeb3React } from "@web3-react/core";
-import { JsonRpcProvider, JsonRpcSigner, Web3Provider } from "@ethersproject/providers";
+import { JsonRpcProvider, JsonRpcSigner } from "@ethersproject/providers";
 import { AddressZero } from "@ethersproject/constants";
 import { Contract } from "@ethersproject/contracts";
 import { isAddress } from "utils/address";
 import { useMemo } from "react";
-import { isUndefined } from "utils/isUndefined";
 import CocodropJson from "@cocodrop/cocodrop-contracts/deployments/goerli/Cocodrop.json";
 import { Cocodrop } from "@cocodrop/cocodrop-contracts/typechain-types/src/Cocodrop";
 import ERC20Json from "@cocodrop/cocodrop-contracts/artifacts/@openzeppelin/contracts/token/ERC20/IERC20.sol/IERC20.json";
@@ -48,10 +47,6 @@ export function getContract(address: string, ABI: any, provider: JsonRpcProvider
   return new Contract(address, ABI, getProviderOrSigner(provider, account));
 }
 
-export const useERC20Contract = (address?: string) => (
-  useContract<IERC20>(address, ERC20Json.abi)
-);
+export const useERC20Contract = (address?: string) => useContract<IERC20>(address, ERC20Json.abi);
 
-export const useCocodropContract = () => (
-  useContract<Cocodrop>(CocodropJson.address, CocodropJson.abi)
-);
+export const useCocodropContract = () => useContract<Cocodrop>(CocodropJson.address, CocodropJson.abi);

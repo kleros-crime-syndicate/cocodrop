@@ -4,7 +4,7 @@ import { injected } from "utils/connectors";
 
 export function useConnect() {
   const [tried, setTried] = useState(false);
-  const { activate, active, error } = useWeb3React();
+  const { activate, active } = useWeb3React();
 
   const tryConnect = async () => {
     const isAuthorized = await injected.isAuthorized();
@@ -24,8 +24,7 @@ export function useConnect() {
     const { ethereum } = window as any;
     if (ethereum && ethereum.on) {
       const handleChainChanged = () => activate(injected);
-      const handleAccountsChanged = (accounts: string[]) =>
-        accounts.length > 0 && activate(injected);
+      const handleAccountsChanged = (accounts: string[]) => accounts.length > 0 && activate(injected);
 
       ethereum.on("chainChanged", handleChainChanged);
       ethereum.on("accountsChanged", handleAccountsChanged);
@@ -39,5 +38,5 @@ export function useConnect() {
     }
   }, [active, tried, activate]);
 
-  return { tried, error };
+  return { tried };
 }

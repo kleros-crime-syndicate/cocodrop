@@ -1,0 +1,5 @@
+query Redemption($id: ID!) {
+  redemption(id: $id) {
+    id
+  }
+}
