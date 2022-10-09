@@ -2,6 +2,7 @@ import useAirdrops from "api/useAirdrops";
 import { AirdropsQuery } from "generated/graphql";
 import useIPFS from "hooks/useIPFS";
 import React from "react";
+import { Link } from "react-router-dom";
 import { IpfsFile } from "types/global";
 
 const AirdropCard: React.FC<{ airdrop: ArrayElement<AirdropsQuery["airdrops"]> }> = ({ airdrop }) => {
@@ -21,7 +22,10 @@ const Claim: React.FC = () => {
   const airdrops = useAirdrops();
 
   return (
-    <div>
+    <div className="mt-32">
+      <Link to="/create" className="ml-16 font-display">
+        Create Airdrop
+      </Link>
       <div>
         {airdrops ? airdrops.map((airdrop) => <AirdropCard airdrop={airdrop} />) : <span>No airdrops available</span>}
       </div>

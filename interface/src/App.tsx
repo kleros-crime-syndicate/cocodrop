@@ -6,15 +6,20 @@ import "react-toastify/dist/ReactToastify.css";
 import Landing from "pages/Landing";
 import Claim from "pages/Claim";
 import Create from "pages/Create";
+import Layout from "modules/Layout";
 
 const App: React.FC = () => (
   <BrowserRouter>
     <ToastContainer position="top-center" />
     <Routes>
-      <Route path="" element={<Landing />} />
-      <Route path="/create" element={<Create />} />
-      <Route path="/claim" element={<Claim />} />
-      <Route path="*" element={<Navigate to="" />} />
+      <Route index element={<Landing />} />
+
+      <Route path="/" element={<Layout />}>
+        <Route path="create" element={<Create />} />
+        <Route path="claim" element={<Claim />} />
+      </Route>
+
+      <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   </BrowserRouter>
 );
