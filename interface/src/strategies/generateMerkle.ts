@@ -38,7 +38,7 @@ const generateMerkle = async (totalAmount: BigNumber, strategy: Strategy, params
 
   const keyedClaims = {};
   claims.forEach((claim) => {
-    keyedClaims[claim.address] = claim;
+    keyedClaims[claim.address.toLowerCase()] = claim;
     delete keyedClaims[claim.address].address;
   });
 
