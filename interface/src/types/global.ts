@@ -1,3 +1,5 @@
+import { BigNumber } from "ethers";
+
 export interface IpfsFile {
   metadata: {
     title: string;
@@ -8,7 +10,7 @@ export interface IpfsFile {
     claims: Record<
       string,
       {
-        value: string;
+        amount: BigNumber;
         proof: string[];
       }
     >;

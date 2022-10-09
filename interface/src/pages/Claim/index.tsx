@@ -48,10 +48,9 @@ const AirdropCard: React.FC<{ airdrop: ArrayElement<AirdropsQuery["airdrops"]> }
               onClick={() => {
                 if (!contract) return;
                 contract
-                  .connect(account)
                   .redeem(
                     airdrop.id,
-                    file.merkleTree.claims[account.toLowerCase()].value,
+                    file.merkleTree.claims[account.toLowerCase()].amount,
                     file.merkleTree.claims[account.toLowerCase()].proof
                   );
               }}
