@@ -2,7 +2,7 @@ import React from "react";
 import cn from "classnames";
 
 interface IInput extends React.InputHTMLAttributes<HTMLInputElement> {
-  hasError: boolean;
+  hasError?: boolean;
 }
 
 const Input: React.FC<IInput> = ({ hasError, ...props }) => (
