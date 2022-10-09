@@ -64,8 +64,4 @@ See the address inside [the deployment artifacts](contracts/deployments).
 👨‍💻 Team Contributions
 -----
 ![Alt](https://repobeats.axiom.co/api/embed/2cda6ef18e39cc65fc2ab6845e1792b50daf96aa.svg "Repobeats analytics image")
-<p align="left">
-  <a href="https://github.com/kleros-crime-syndicate/cocodrop/graphs/contributors">
-    <img src="https://contrib.rocks/image?repo=kleros-crime-syndicate/cocodrop&max=300">
-  </a>
-</p>
+
