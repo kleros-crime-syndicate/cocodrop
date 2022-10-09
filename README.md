@@ -59,7 +59,7 @@ Each directory at the root of this repository contains code for each individual 
 ⛓ Deployment
 -----
 
-See the address inside [the deployment artifacts](contracts/deployments/mumbai).
+See the address inside [the deployment artifacts](contracts/deployments).
 
 👨‍💻 Team Contributions
 -----
