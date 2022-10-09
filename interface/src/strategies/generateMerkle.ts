@@ -1,7 +1,7 @@
-import pohStrategy from "./poh";
 import getRewards from "./getRewards";
 import { BigNumber } from "ethers";
 import { MerkleTree } from "@kleros/merkle-tree";
+import { Strategy } from "types";
 
 export interface Merkle {
   claims: {
@@ -17,21 +17,21 @@ export interface Merkle {
   height: number;
 }
 
-const generateMerkle = async (totalAmount: BigNumber): Promise<Merkle> => {
-  const shares = await pohStrategy.computeShares();
+const generateMerkle = async (totalAmount: BigNumber, strategy: Strategy): Promise<Merkle> => {
+  const shares = await strategy.computeShares();
 
   const rewards = getRewards(totalAmount, shares.totalWeight, shares.shares);
-  const nodedRewards = rewards.map((item) => ({
+  const claims: { address: string; amount: BigNumber; node: string; proof?: string[] }[] = rewards.map((item) => ({
     ...item,
     node: MerkleTree.makeLeafNode(item.address, item.amount as any),
   }));
-  const nodes = nodedRewards.map((item) => item.node);
+  const nodes = claims.map((claim) => claim.node);
   const mt = new MerkleTree(nodes);
-
-  const claims = nodedRewards.map((nodedReward) => ({
-    ...nodedReward,
-    proof: mt.getHexProof(nodedReward.node),
-  }));
+  console.log({ mt });
+  for (const claim of claims) {
+    claim.proof = mt.getHexProof(claim.node);
+  }
+  console.log({ claims });
 
   const keyedClaims = {};
   claims.forEach((claim) => {

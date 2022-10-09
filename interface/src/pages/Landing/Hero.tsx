@@ -3,7 +3,6 @@ import cn from "classnames";
 import CocoLogo from "assets/cocologo.svg";
 import { Link } from "react-router-dom";
 import background from "assets/cocodrop-bg.jpg";
-
 const Hero: React.FC = () => {
   return (
     <div
