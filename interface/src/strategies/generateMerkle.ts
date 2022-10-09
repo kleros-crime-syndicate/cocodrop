@@ -27,15 +27,18 @@ const generateMerkle = async (totalAmount: BigNumber, strategy: Strategy): Promi
   }));
   const nodes = claims.map((claim) => claim.node);
   const mt = new MerkleTree(nodes);
+
   console.log({ mt });
+
   for (const claim of claims) {
     claim.proof = mt.getHexProof(claim.node);
   }
+
   console.log({ claims });
 
   const keyedClaims = {};
   claims.forEach((claim) => {
-    keyedClaims[claim.address] = { ...claim };
+    keyedClaims[claim.address] = claim;
     delete keyedClaims[claim.address].address;
   });
 
