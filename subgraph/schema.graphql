@@ -9,6 +9,8 @@ type Airdrop @entity {
   originalAmount: BigInt!
   "How much token does this airdrop still contain"
   remainingAmount: BigInt!
+  "Whether if it's still open"
+  open: Boolean!
   "Address of the token the airdrop dispersed"
   token: Bytes!
   "Ipfs file containing the merkle drop"
