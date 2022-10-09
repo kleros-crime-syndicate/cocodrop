@@ -21,7 +21,7 @@ dataSources:
         - Redemption
       abis:
         - name: Cocodrop
-          file: ./abis/Cocodrop.json
+          file: ./abis/{{network}}/Cocodrop.json
       eventHandlers:
         - event: NewAirdrop(indexed uint256,bytes32,address,uint256,string)
           handler: handleNewAirdrop
