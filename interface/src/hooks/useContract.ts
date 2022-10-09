@@ -7,6 +7,7 @@ import { useMemo } from "react";
 import CocodropGnosis from "@cocodrop/cocodrop-contracts/deployments/gnosischain/Cocodrop.json";
 import CocodropOptimism from "@cocodrop/cocodrop-contracts/deployments/optimism/Cocodrop.json";
 import CocodropMumbai from "@cocodrop/cocodrop-contracts/deployments/mumbai/Cocodrop.json";
+import CocodropGoerli from "@cocodrop/cocodrop-contracts/deployments/goerli/Cocodrop.json";
 import { Cocodrop } from "@cocodrop/cocodrop-contracts/typechain-types/src/Cocodrop";
 import ERC20Json from "@cocodrop/cocodrop-contracts/artifacts/@openzeppelin/contracts/token/ERC20/IERC20.sol/IERC20.json";
 import { IERC20 } from "@cocodrop/cocodrop-contracts/typechain-types/@openzeppelin/contracts/token/ERC20/IERC20";
@@ -57,7 +58,7 @@ export const useCocodropContract = () =>
     {
       [ChainID.GNOSIS]: CocodropGnosis.address,
       [ChainID.OPTIMISM]: CocodropOptimism.address,
-      [ChainID.GOERLI]: CocodropGnosis.address,
+      [ChainID.GOERLI]: CocodropGoerli.address,
       [ChainID.MUMBAI]: CocodropMumbai.address,
     },
     CocodropGnosis.abi
