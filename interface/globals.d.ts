@@ -8,6 +8,11 @@ declare module "*.jpg" {
   export default uri;
 }
 
+declare module "*.jpeg" {
+  const uri: string;
+  export default uri;
+}
+
 declare module "*.png" {
   const uri: string;
   export default uri;

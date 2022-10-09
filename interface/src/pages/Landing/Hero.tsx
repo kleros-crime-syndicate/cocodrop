@@ -20,7 +20,8 @@ const Hero: React.FC = () => (
         "rounded-3xl",
         "font-display",
         "mix-blend-screen",
-        "text-6xl"
+        "text-6xl",
+        "animate-bounce"
       )}
     >
       Use dApp
