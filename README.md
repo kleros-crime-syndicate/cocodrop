@@ -57,6 +57,11 @@ Each directory at the root of this repository contains code for each individual 
 
 See the address inside [the deployment artifacts](contracts/deployments).
 
+- Goerli [0xb62a93658992C6782E5d21a75814edf496069747](https://goerli.etherscan.io/address/0xb62a93658992C6782E5d21a75814edf496069747#code)
+- Mumbai [0xccF51092B5EB2152883fEa91337BB13FBF52827C](https://mumbai.polygonscan.com/address/0xccF51092B5EB2152883fEa91337BB13FBF52827C#code)
+- Optimism [0xb845f36779d9a0707f19bea934a30728f485d7c9](https://optimistic.etherscan.io/address/0xb845f36779d9a0707f19bea934a30728f485d7c9#code)
+- Gnosis Chain [0x66Af21F227d37D411fD63173D13c74782721ABf1](https://gnosisscan.io/address/0x66Af21F227d37D411fD63173D13c74782721ABf1#code)
+
 👨‍💻 Team Contributions
 -----
 ![Alt](https://repobeats.axiom.co/api/embed/2cda6ef18e39cc65fc2ab6845e1792b50daf96aa.svg "Repobeats analytics image")
