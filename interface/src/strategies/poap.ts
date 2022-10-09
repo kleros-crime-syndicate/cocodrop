@@ -47,7 +47,7 @@ const getDisplayName = async (eventId: number) => {
 const poapStrategy: Strategy = {
   name: "POAP",
   description: "poaps here",
-  logoUri: "https://image.com/thing.png",
+  logoUri: "https://raw.githubusercontent.com/kleros-crime-syndicate/cocodrop/master/interface/src/assets/poap.png",
   parameters: ["Event ID"],
   computeShares: poapCompute,
   getDisplayName,

@@ -42,7 +42,7 @@ const getDisplayName = () => (
 const pohStrategy: Strategy = {
   name: "Proof of Humanity",
   description: "Every registered human gets an equal share",
-  logoUri: "https://github.com/Proof-Of-Humanity/proof-of-humanity-web/raw/master/assets/sample-evidence/photo.png",
+  logoUri: "https://app.proofofhumanity.id/images/governance.png",
   parameters: [],
   computeShares: pohCompute,
   getDisplayName,

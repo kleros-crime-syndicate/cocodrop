@@ -85,7 +85,7 @@ const getDisplayName = async (profileId: string) => {
 const lensStrategy: Strategy = {
   name: "Lens Followers",
   description: "Reward your lens followers",
-  logoUri: "https://image.com/thing.png",
+  logoUri: "https://raw.githubusercontent.com/kleros-crime-syndicate/cocodrop/master/interface/src/assets/lens.png",
   parameters: ["Profile ID"],
   computeShares: lensCompute,
   getDisplayName,
