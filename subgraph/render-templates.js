@@ -5,7 +5,7 @@ const chainNameToChainId = {
   mainnet: 1,
   goerli: 5,
   polygon: 137,
-  gnosischain: 100,
+  xdai: 100,
   mumbai: 80001,
 };
 
