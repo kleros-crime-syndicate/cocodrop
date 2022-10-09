@@ -48,12 +48,35 @@ const computeShares = async (
   };
 };
 
+interface Proposal {
+  title: string,
+  choices: string[]
+}
+
+const getDisplayName = async (
+  proposalId: string,
+  choice: string
+): Promise<string> => {
+  const query = `{
+    proposal(id: ${proposalId}){
+      title
+      choices
+    }
+  }`;
+  const result = await request("https://hub.snapshot.org/graphql", query);
+  const proposal = result.proposal as Proposal
+  const actualChoice = Number(choice)
+  const title = `Voters of "${proposal.choices[actualChoice]}" in Proposal "${proposal.title}"`
+  return title;
+}
+
 const snapshotBriber: Strategy = {
   name: "Snapshot Briber",
   description: "Reward whoever votes properly. Note the choice is a number, and they start counting from 1",
   logoUri: "https://image.com/thing.png",
   parameters: ["Proposal Id", "Choice (as number)"],
   computeShares: computeShares as any,
+  getDisplayName
 };
 
 export default snapshotBriber;
