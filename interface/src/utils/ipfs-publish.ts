@@ -1,5 +1,3 @@
-import fetch from "node-fetch";
-
 /**
  * Send file to IPFS network via the Kleros IPFS node
  * @param {string} fileName - The name that will be used to store the file. This is useful to preserve extension type.
