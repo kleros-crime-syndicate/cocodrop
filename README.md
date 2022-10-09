@@ -1,16 +1,12 @@
 <p align="center">
   <a href="https://cocodrop.netlify.app">
-    <img alt="FIXME" src="https://raw.githubusercontent.com/kleros-crime-syndicate/cocodrop/master/interface/src/assets/cocodrop.svg" width="512">
+    <img alt="FIXME" src="https://raw.githubusercontent.com/kleros-crime-syndicate/cocodrop/master/docs/cocodrop.svg" width="512">
   </a>
 </p>
-
-
-</b>
 
 <p align="center">
   <a href="https://app.netlify.com/sites/cocodrop/deploys"><img src="https://api.netlify.com/api/v1/badges/4c35592a-bbba-4c08-860a-7c83bb80314c/deploy-status" alt="Netlify Build Status"></a>
   </br>
-  <a href="https://github.com/kleros-crime-syndicate/cocodrop/actions/workflows/contracts-testing.yml"><img src="https://github.com/kleros-crime-syndicate/cocodrop/actions/workflows/contracts-testing.yml/badge.svg?branch=master" alt="Unit testing"></a>
   <a href="https://conventionalcommits.org"><img src="https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg" alt="Conventional Commits"></a>
   <a href="http://commitizen.github.io/cz-cli/"><img src="https://img.shields.io/badge/commitizen-friendly-brightgreen.svg" alt="Commitizen Friendly"></a>
   <a href="https://github.com/prettier/prettier"><img src="https://img.shields.io/badge/styled_with-prettier-ff69b4.svg" alt="Styled with Prettier"></a>
