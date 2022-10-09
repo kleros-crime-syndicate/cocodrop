@@ -95,7 +95,6 @@ const config: HardhatUserConfig = {
       verify: {
         etherscan: {
           apiKey: etherscanApis["100"],
-          apiUrl: "https://gnosisscan.io/"
         },
       },
     },
