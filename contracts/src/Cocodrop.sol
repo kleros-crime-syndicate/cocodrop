@@ -88,7 +88,7 @@ contract Cocodrop {
         returns (bool valid)
     {
       // less gas efficient than assembly, but this suffices for v1
-      bytes32 leaf = keccack256(abi.encodePacked(msg.sender, _claimedAmount));
+      bytes32 leaf = keccak256(abi.encodePacked(msg.sender, _claimedAmount));
       return MerkleProof.verify(_merkleProof, airdrops[_airdropId].merkleRoot, leaf);
     }
 }
