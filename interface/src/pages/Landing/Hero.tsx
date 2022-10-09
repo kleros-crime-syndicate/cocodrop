@@ -12,6 +12,8 @@ const Hero: React.FC = () => (
     <Link
       to="/claim"
       className={cn(
+        "hidden",
+        "xl:block",
         "absolute",
         "top-10",
         "bg-white",
@@ -26,8 +28,8 @@ const Hero: React.FC = () => (
     >
       Use dApp
     </Link>
-    <CocoLogo className="w-1/3" />
-    <span className="text-9xl font-display text-white">Drop</span>
+    <CocoLogo className="w-3/4 sm:w-1/2 2xl:w-1/3" />
+    <span className="text-5xl font-display text-white sm:text-7xl 2xl:text-9xl">Drop</span>
   </div>
 );
 

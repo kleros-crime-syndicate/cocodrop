@@ -69,7 +69,7 @@ const Claim: React.FC = () => {
 
   return (
     <div
-      className={cn("bg-cover", "bg-no-repeat", "bg-center", "h-screen", "flex")}
+      className={cn("bg-cover", "bg-no-repeat", "bg-center", "min-h-screen", "flex")}
       style={{ backgroundImage: `url('${BackgroundCreate}')` }}
     >
       <div className="p-32 w-full flex flex-col items-start">

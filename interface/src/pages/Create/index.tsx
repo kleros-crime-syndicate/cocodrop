@@ -31,7 +31,7 @@ const Create: React.FC = () => {
   const cocodrop = useCocodropContract();
   return (
     <div
-      className={cn("bg-cover", "bg-no-repeat", "bg-center", "h-screen", "flex")}
+      className={cn("bg-cover", "bg-no-repeat", "bg-center", "min-h-screen", "flex", "py-24")}
       style={{ backgroundImage: `url('${BackgroundCreate}')` }}
     >
       <div className="flex flex-col gap-8 m-auto w-1/3 p-10 bg-white/30 rounded-2xl">
