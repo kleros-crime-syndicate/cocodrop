@@ -55,7 +55,7 @@ Each directory at the root of this repository contains code for each individual 
 ⛓ Deployment
 -----
 
-See the address inside [the deployment artifacts](contracts/deployments).
+See the address inside [the deployment artifacts](contracts/deployments). Why we built [#onPolygon](https://twitter.com/ndreimvp/status/1579059106929053697?s=20&t=iM_ys7AR4pdn1DANols7xA).
 
 - Goerli [0xb62a93658992C6782E5d21a75814edf496069747](https://goerli.etherscan.io/address/0xb62a93658992C6782E5d21a75814edf496069747#code)
 - Mumbai [0xccF51092B5EB2152883fEa91337BB13FBF52827C](https://mumbai.polygonscan.com/address/0xccF51092B5EB2152883fEa91337BB13FBF52827C#code)
