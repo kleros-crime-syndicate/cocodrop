@@ -7,7 +7,7 @@ export type sdkReturnType = ReturnType<typeof getSdk>;
 export type queryType = keyof sdkReturnType;
 export type queryReturnType<Q extends queryType> = Record<number, Awaited<ReturnType<sdkReturnType[Q]>>>;
 
-const sdk = SUPPORTED_CHAIN_IDS.reduce(
+export const sdk = SUPPORTED_CHAIN_IDS.reduce(
   (acc, chainID) => ({
     ...acc,
     [chainID]: getSdk(new GraphQLClient(SUBGRAPH_ENDPOINTS[chainID])),
@@ -15,8 +15,8 @@ const sdk = SUPPORTED_CHAIN_IDS.reduce(
   {} as Record<number, sdkReturnType>
 );
 
-export const queryGraph = async <Q extends queryType>(
-  chainId: number,
-  query: Q,
-  ...params: Parameters<sdkReturnType[Q]>
-): Promise<ReturnType<sdkReturnType[Q]>> => await sdk[chainId][query](...((params as any) || []));
+// export const queryFetch = async <Q extends keyof sdkReturnType>(
+//   fetchChainId: number,
+//   query: Q,
+//   ...params: Parameters<sdkReturnType[Q]>
+// ): Promise<ReturnType<sdkReturnType[Q]>> => await sdk[fetchChainId][query](...((params as any) || []));

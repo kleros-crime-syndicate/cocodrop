@@ -1,10 +1,10 @@
 import React from "react";
 import cn from "classnames";
-import Select, {StylesConfig} from 'react-select'
+import Select, { StylesConfig } from "react-select";
 import strategies from "strategies";
 
 const selectStyle: StylesConfig = {
-  control: (styles) => ({ ...styles, minHeight: "60px" })
+  control: (styles) => ({ ...styles, minHeight: "60px" }),
 };
 
 type Option = {
@@ -15,15 +15,18 @@ type Option = {
 };
 
 const SelectStrategy: React.FC<{
-  setStrategyId: (value: number | undefined) => void
-  strategyId?: number,
+  setStrategyId: (value: number | undefined) => void;
+  strategyId?: number;
 }> = ({ strategyId, setStrategyId }) => {
-  const options = strategies.map(({ name, logoUri, description }, i) => (
-    { value: i, label: name, description, logoUri }
-  ));
+  const options = strategies.map(({ name, logoUri, description }, i) => ({
+    value: i,
+    label: name,
+    description,
+    logoUri,
+  }));
   return (
     <Select
-      styles={selectStyle} 
+      styles={selectStyle}
       {...{ options }}
       formatOptionLabel={OptionFormat}
       value={strategyId ? options[strategyId] : undefined}
@@ -34,18 +37,9 @@ const SelectStrategy: React.FC<{
   );
 };
 
-const OptionFormat: (option: Option) => React.ReactNode = ({
-  label,
-  description,
-  logoUri,
-}) => (
+const OptionFormat: (option: Option) => React.ReactNode = ({ label, description, logoUri }) => (
   <div className="flex items-center gap-2 h-[50px]">
-    <img
-      src={logoUri}
-      className={cn(
-        "h-full"
-      )}
-    />
+    <img src={logoUri} className={cn("h-full")} />
     <div>
       <h1 className="text-xl font-bold">{label}</h1>
       <p>{description}</p>

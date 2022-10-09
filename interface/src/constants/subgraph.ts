@@ -1,6 +1,6 @@
 import { ChainID } from "./chains";
 
-export const SUBGRAPH_ENDPOINTS: { [key in ChainID]: string } = {
+export const SUBGRAPH_ENDPOINTS: Record<number, string> = {
   [ChainID.POLYGON]: "",
-  [ChainID.MUMBAI]: "",
+  [ChainID.GOERLI]: "https://api.thegraph.com/subgraphs/name/greenlucid/cocodrop-goerli",
 };

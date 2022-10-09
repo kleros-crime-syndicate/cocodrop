@@ -9,6 +9,6 @@ const Landing: React.FC = () => {
       <About />
     </div>
   );
-}
+};
 
 export default Landing;

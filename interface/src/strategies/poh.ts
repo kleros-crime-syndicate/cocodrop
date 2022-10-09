@@ -1,9 +1,9 @@
 import request from "graphql-request";
-import { Share, Strategy } from "types";
+import { Strategy } from "types";
 
 const getBatch = async (first: number, skip: number): Promise<string[]> => {
   const query = `{
-    submissions(where: {registered: true}, first: ${first}, skip: ${skip}){
+    submissions(where: { registered: true }, first: ${first}, skip: ${skip}){
       id
     }
   }`;
@@ -26,9 +26,9 @@ const getAllHumans = async (): Promise<string[]> => {
   return batches.flat(1);
 };
 
-const pohCompute = async (): Promise<{totalWeight: number, shares: Share[]}> => {
+const pohCompute = async () => {
   const humans = await getAllHumans();
-  const weightedHumans = humans.map((human) => ({ address: human, weight: 1 }));
+  const weightedHumans = humans.reduce((acc, human) => ({ ...acc, [human]: 1 }), {} as Record<string, number>);
   return {
     totalWeight: humans.length,
     shares: weightedHumans,
@@ -37,9 +37,10 @@ const pohCompute = async (): Promise<{totalWeight: number, shares: Share[]}> => 
 
 const pohStrategy: Strategy = {
   name: "Proof of Humanity",
-  description: "Every registered human gets one share",
+  description: "Every registered human gets an equal share",
   logoUri: "https://github.com/Proof-Of-Humanity/proof-of-humanity-web/raw/master/assets/sample-evidence/photo.png",
-  computeShares: pohCompute
+  parameters: [],
+  computeShares: pohCompute,
 };
 
 export default pohStrategy;

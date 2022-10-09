@@ -1,0 +1,10 @@
+query Airdrops {
+  airdrops {
+    id
+    airdropId
+    donor
+    originalAmount
+    token
+    ipfs
+  }
+}

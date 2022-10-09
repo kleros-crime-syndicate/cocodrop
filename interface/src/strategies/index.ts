@@ -1,4 +1,6 @@
 import pohStrategy from "./poh";
+import lensStrategy from "./lens";
+import poapStrategy from "./poap";
 // import generateMerkle from './generateMerkle';
 // import publishMerkle from './publishMerkle';
 // import { BigNumber } from "ethers";
@@ -12,4 +14,5 @@ import pohStrategy from "./poh";
 // }
 // const contentId = await publishMerkle(mt,meta);
 // console.log(contentId);
-export default [pohStrategy];
+
+export default [pohStrategy, lensStrategy, poapStrategy];

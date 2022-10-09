@@ -1,5 +1,5 @@
 overwrite: true
-schema: "https://api.thegraph.com/subgraphs/name/kleros-crime-syndicate/cocodrop-mumbai"
+schema: "https://api.thegraph.com/subgraphs/name/greenlucid/cocodrop-goerli"
 documents: "src/**/*.graphql"
 generates:
   ./src/generated/graphql.ts:
