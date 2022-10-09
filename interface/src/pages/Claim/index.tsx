@@ -15,6 +15,7 @@ import BackgroundCreate from "assets/background-create.jpg";
 const AirdropCard: React.FC<{ airdrop: ArrayElement<AirdropsQuery["airdrops"]> }> = ({ airdrop }) => {
   const { account } = useWeb3();
   const [file] = useIPFS<IpfsFile>(airdrop.ipfs);
+  if (airdrop.id === "4") console.log(airdrop.ipfs);
   const contract = useCocodropContract();
   const redemptionExists = useRedemptionExists(airdrop.id, account);
   if (!file) return null;
@@ -38,7 +39,7 @@ const AirdropCard: React.FC<{ airdrop: ArrayElement<AirdropsQuery["airdrops"]> }
 
         <br />
 
-        {account && file.merkleTree[account.toLowerCase()] ? (
+        {account && file.merkleTree.claims[account.toLowerCase()] ? (
           redemptionExists ? (
             <span className="font-display text-blue-500">Already claimed 🌴</span>
           ) : (
@@ -50,8 +51,8 @@ const AirdropCard: React.FC<{ airdrop: ArrayElement<AirdropsQuery["airdrops"]> }
                   .connect(account)
                   .redeem(
                     airdrop.id,
-                    file.merkleTree[account.toLowerCase()].value,
-                    file.merkleTree[account.toLowerCase()].proof
+                    file.merkleTree.claims[account.toLowerCase()].value,
+                    file.merkleTree.claims[account.toLowerCase()].proof
                   );
               }}
             >

@@ -4,13 +4,18 @@ export interface IpfsFile {
     description: string;
     strategy?: string;
   };
-  merkleTree: Record<
-    string,
-    {
-      value: string;
-      proof: string[];
-    }
-  >;
+  merkleTree: {
+    claims: Record<
+      string,
+      {
+        value: string;
+        proof: string[];
+      }
+    >;
+    root: string;
+    width: number;
+    height: number;
+  };
 }
 
 /*
