@@ -72,7 +72,7 @@ const getDisplayName = async (
 
 const snapshotBriber: Strategy = {
   name: "Snapshot Briber",
-  description: "Reward whoever votes properly. Note the choice is a number, and they start counting from 1",
+  description: "Reward whoever votes properly. The choice field starts from 1.",
   logoUri: "https://raw.githubusercontent.com/kleros-crime-syndicate/cocodrop/master/interface/src/assets/snapshot.png",
   parameters: ["Proposal Id", "Choice (as number)"],
   computeShares: computeShares as any,
