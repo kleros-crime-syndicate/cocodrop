@@ -9,7 +9,7 @@ interface Vote {
 
 const getBatch = async (proposalId: string, first: number, skip: number): Promise<Vote[]> => {
   const query = `{
-    votes(where: { proposal: ${proposalId} }, first: ${first}, skip: ${skip}){
+    votes(where: { proposal: "${proposalId}" }, first: ${first}, skip: ${skip}){
       voter
       choice
       vp
@@ -52,7 +52,7 @@ interface Proposal {
 
 const getDisplayName = async (...args: string[]): Promise<string> => {
   const query = `{
-    proposal(id: ${args[0]}){
+    proposal(id: "${args[0]}"){
       title
       choices
     }
