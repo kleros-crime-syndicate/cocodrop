@@ -65,6 +65,7 @@
     "graphql": "^16.4.0",
     "graphql-request": "^4.2.0",
     "graphql-tag": "^2.12.6",
+    "js-confetti": "^0.10.2",
     "mapbox-gl": "^2.8.2",
     "node-fetch": "^3.2.10",
     "postcss-import": "^14.1.0",

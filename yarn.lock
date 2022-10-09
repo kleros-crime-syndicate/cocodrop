@@ -770,6 +770,7 @@ __metadata:
     graphql: ^16.4.0
     graphql-request: ^4.2.0
     graphql-tag: ^2.12.6
+    js-confetti: ^0.10.2
     mapbox-gl: ^2.8.2
     node-fetch: ^3.2.10
     os-browserify: ^0.3.0
@@ -14405,6 +14406,13 @@ __metadata:
     merge-stream: ^2.0.0
     supports-color: ^8.0.0
   checksum: 98cd68b696781caed61c983a3ee30bf880b5bd021c01d98f47b143d4362b85d0737f8523761e2713d45e18b4f9a2b98af1eaee77afade4111bb65c77d6f7c980
+  languageName: node
+  linkType: hard
+
+"js-confetti@npm:^0.10.2":
+  version: 0.10.2
+  resolution: "js-confetti@npm:0.10.2"
+  checksum: 110c87ea18eb350819093cd5d27f8c880d14e327592a7df853db65604d33416f10a8ce6dde1fbcf00ff50972e56eea0f74d5f05346dcca74d685aeae01b3917e
   languageName: node
   linkType: hard
 

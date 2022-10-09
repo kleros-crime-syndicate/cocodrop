@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 import cn from "classnames";
 import Button from "components/Button";
 import useWeb3 from "hooks/useWeb3";
@@ -12,9 +14,12 @@ import publishMerkle, { Metadata } from "strategies/publishMerkle";
 import { useCocodropContract, useERC20Contract } from "hooks/useContract";
 import { ContractTransaction } from "ethers";
 import { isUndefined } from "utils/isUndefined";
+import { useConfetti } from "modules/Confetti";
 
 const Create: React.FC = () => {
   const { account, activate } = useWeb3();
+  const confetti = useConfetti();
+  const navigate = useNavigate();
   const [formInfo, setFormInfo] = useState<IFormInfo>({
     title: undefined,
     description: undefined,
@@ -57,7 +62,7 @@ const Create: React.FC = () => {
                   {...{ recipients }}
                 />
                 <div className="flex justify-between">
-                  <Button text="Back" onClick={() => setPreviewMode(false)} />
+                  <Button text="Back" disabled={isLoading} onClick={() => setPreviewMode(false)} />
                   <Button
                     text="Deploy"
                     onClick={async () => {
@@ -79,7 +84,9 @@ const Create: React.FC = () => {
                           return;
 
                         let tx: ContractTransaction = await ERC20Contract.approve(cocodrop.address, formInfo.totalAmount);
+                        toast.info("Token approval transaction sent.")
                         await tx.wait();
+                        toast.success("Token approval was mined!")
 
                         tx = await cocodrop.createAirdrop(
                           merkleRoot,
@@ -87,8 +94,13 @@ const Create: React.FC = () => {
                           formInfo.totalAmount!,
                           contentId
                         );
+                        toast.info("AirDrop deployment sent.")
                         await tx.wait();
-                      } catch {
+                        toast.success("AirDrop was mined! 🥥")
+                        confetti.addConfetti({emojis: ["🥥"]});
+                        navigate("/");
+                      } catch (e) {
+                        toast.error(e.toString());
                       } finally {
                         setIsLoading(false);
                       }

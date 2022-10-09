@@ -1,4 +1,6 @@
 import useAirdrops from "api/useAirdrops";
+import { toast } from "react-toastify";
+import { useConfetti } from "modules/Confetti";
 import { AirdropsQuery } from "generated/graphql";
 import useIPFS from "hooks/useIPFS";
 import useWeb3 from "hooks/useWeb3";
@@ -13,6 +15,7 @@ import cn from "classnames";
 import BackgroundCreate from "assets/background-create.jpg";
 
 const AirdropCard: React.FC<{ airdrop: ArrayElement<AirdropsQuery["airdrops"]> }> = ({ airdrop }) => {
+  const confetti = useConfetti();
   const { account } = useWeb3();
   const [file] = useIPFS<IpfsFile>(airdrop.ipfs);
   if (airdrop.id === "4") console.log(airdrop.ipfs);
@@ -45,15 +48,19 @@ const AirdropCard: React.FC<{ airdrop: ArrayElement<AirdropsQuery["airdrops"]> }
           ) : (
             <button
               className="self-start p-2 border rounded font-display"
-              onClick={() => {
+              onClick={async () => {
                 if (!contract) return;
-                contract
+                const tx = await contract
                   .connect(account)
                   .redeem(
                     airdrop.id,
                     file.merkleTree.claims[account.toLowerCase()].value,
                     file.merkleTree.claims[account.toLowerCase()].proof
                   );
+                toast.info("Claim transaction sent!")
+                await tx.wait();
+                toast.info("Claim transaction mined! 🥥")
+                confetti.addConfetti({emojis: ["🥥"]});
               }}
             >
               🥥 Claim
