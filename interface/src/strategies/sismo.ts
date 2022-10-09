@@ -27,8 +27,8 @@ const getAllSBadges = async (tokenId: number): Promise<string[]> => {
   return batches.flat(1);
 };
 
-const sismoCompute = async (tokenId: number) => {
-  const sbadges = await getAllSBadges(tokenId);
+const sismoCompute = async (...args: string[]) => {
+  const sbadges = await getAllSBadges(Number(args[0]));
   const weightedSBadges = sbadges.reduce((acc, human) => ({ ...acc, [human]: 1 }), {} as Record<string, number>);
   return {
     totalWeight: sbadges.length,
@@ -36,8 +36,8 @@ const sismoCompute = async (tokenId: number) => {
   };
 };
 
-const getDisplayName = async (tokenId: string) => {
-  const tokenIdHex: string = BigNumber.from(tokenId).toHexString().substring(2);
+const getDisplayName = async (...args: string[]) => {
+  const tokenIdHex: string = BigNumber.from(args[0]).toHexString().substring(2);
   const paddedTokenId: string = "0".repeat(64-tokenIdHex.length)+tokenIdHex;
   const query = `https://hub.sismo.io/badges/polygon/${paddedTokenId}.json`;
   const result = await fetch(query);

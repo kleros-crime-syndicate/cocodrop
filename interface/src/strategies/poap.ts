@@ -1,7 +1,7 @@
 import request, { gql } from "graphql-request";
 import { Strategy } from "types";
 
-async function poapCompute(eventId: number) {
+async function poapCompute(...args: string[]) {
   const chunkSize = 1000;
   const fetchedData: { [address: string]: number } = {};
   let currentChunkIndex = 0;
@@ -21,7 +21,7 @@ async function poapCompute(eventId: number) {
           }
         }
       `,
-      { eventId, tokensChunkSize: chunkSize, tokensSkip: chunkSize * currentChunkIndex }
+      { eventId: Number(args[0]), tokensChunkSize: chunkSize, tokensSkip: chunkSize * currentChunkIndex }
     );
 
     for (const currentChunkToken of currentChunkTokensOwners.event?.tokens || []) {
@@ -39,8 +39,8 @@ async function poapCompute(eventId: number) {
   };
 }
 
-const getDisplayName = async (eventId: number) => {
-  const { name } = await fetch(`https://api.poap.tech/events/id/${eventId}`).then((response) => response.json());
+const getDisplayName = async (...args: string[]) => {
+  const { name } = await fetch(`https://api.poap.tech/events/id/${args[0]}`).then((response) => response.json());
   return (`For everyone with the "${name}" POAP.`);
 };
 

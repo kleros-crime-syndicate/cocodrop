@@ -55,9 +55,9 @@ async function* getFollowers(profileId: string): AsyncGenerator<FollowerType, vo
   } while (lensFollowers.followers.items.length > 0);
 }
 
-const lensCompute = async (profileId: string) => {
+const lensCompute = async (...args: string[]) => {
   const dataProfiles = {} as Record<string, number>;
-  for await (const item of getFollowers(profileId)) {
+  for await (const item of getFollowers(args[0])) {
     dataProfiles[item.wallet.address] = 1;
   }
 
@@ -67,7 +67,7 @@ const lensCompute = async (profileId: string) => {
   };
 };
 
-const getDisplayName = async (profileId: string) => {
+const getDisplayName = async (...args: string[]) => {
   const { name } = await request(
     "https://api.lens.dev/",
     gql`
@@ -77,7 +77,7 @@ const getDisplayName = async (profileId: string) => {
         }
       }
     `,
-    { request: { profileId: profileId } }
+    { request: { profileId: args[0] } }
   );
   return (`For accounts following ${name} on Lens.`);
 };

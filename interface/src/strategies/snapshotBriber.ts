@@ -32,13 +32,10 @@ const getAllVotes = async (proposalId: string): Promise<Vote[]> => {
   return batches.flat(1);
 };
 
-const computeShares = async (
-  proposalId: string,
-  choice: string
-): Promise<{ totalWeight: number; shares: Record<string, number> }> => {
-  const votes = await getAllVotes(proposalId);
+const computeShares = async (...args: string[]): Promise<{ totalWeight: number; shares: Record<string, number> }> => {
+  const votes = await getAllVotes(args[0]);
 
-  const actualChoice = Number(choice);
+  const actualChoice = Number(args[1]);
   const goodVotes = votes.filter((vote) => vote.choice === actualChoice && vote.vp > 0);
 
   const weightedVotes = goodVotes.reduce((acc, vote) => ({ ...acc, [vote.voter]: 1 }), {} as Record<string, number>);
@@ -53,19 +50,16 @@ interface Proposal {
   choices: string[]
 }
 
-const getDisplayName = async (
-  proposalId: string,
-  choice: string
-): Promise<string> => {
+const getDisplayName = async (...args: string[]): Promise<string> => {
   const query = `{
-    proposal(id: ${proposalId}){
+    proposal(id: ${args[0]}){
       title
       choices
     }
   }`;
   const result = await request("https://hub.snapshot.org/graphql", query);
   const proposal = result.proposal as Proposal
-  const actualChoice = Number(choice)
+  const actualChoice = Number(args[1])
   const title = `Voters of "${proposal.choices[actualChoice]}" in Proposal "${proposal.title}"`
   return title;
 }
@@ -75,7 +69,7 @@ const snapshotBriber: Strategy = {
   description: "Reward whoever votes properly. The choice field starts from 1.",
   logoUri: "https://raw.githubusercontent.com/kleros-crime-syndicate/cocodrop/master/interface/src/assets/snapshot.png",
   parameters: ["Proposal Id", "Choice (as number)"],
-  computeShares: computeShares as any,
+  computeShares,
   getDisplayName
 };
 

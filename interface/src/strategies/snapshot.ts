@@ -32,10 +32,8 @@ const getAllVotes = async (proposalId: string): Promise<Vote[]> => {
   return batches.flat(1);
 };
 
-const computeShares = async (
-  proposalId: string
-): Promise<{ totalWeight: number; shares: Record<string, number> }> => {
-  const votes = await getAllVotes(proposalId);
+const computeShares = async (...args: string[]): Promise<{ totalWeight: number; shares: Record<string, number> }> => {
+  const votes = await getAllVotes(args[0]);
   const goodVotes = votes.filter((vote) => vote.vp > 0);
 
   const weightedVotes = goodVotes.reduce((acc, vote) => ({ ...acc, [vote.voter]: 1 }), {} as Record<string, number>);
@@ -49,9 +47,9 @@ interface Proposal {
   title: string;
 }
 
-const getDisplayName = async (proposalId: string, choice: string): Promise<string> => {
+const getDisplayName = async (...args: string[]): Promise<string> => {
   const query = `{
-    proposal(id: ${proposalId}){
+    proposal(id: ${args[0]}){
       title
     }
   }`;
@@ -66,7 +64,7 @@ const snapshot: Strategy = {
   description: "Reward whoever votes in a proposal.",
   logoUri: "https://raw.githubusercontent.com/kleros-crime-syndicate/cocodrop/master/interface/src/assets/snapshot.png",
   parameters: ["Proposal Id"],
-  computeShares: computeShares as any,
+  computeShares,
   getDisplayName,
 };
 
