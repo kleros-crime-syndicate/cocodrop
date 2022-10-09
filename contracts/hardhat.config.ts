@@ -14,7 +14,7 @@ import "hardhat-contract-sizer";
 
 dotenv.config();
 
-const etherscanApis: any = JSON.parse(process.env.ETHERSCAN_APIS !== undefined ? process.env.ETHERSCAN_APIS : "")
+const etherscanApis: any = JSON.parse(process.env.ETHERSCAN_APIS !== undefined ? process.env.ETHERSCAN_APIS : "{}")
 
 const config: HardhatUserConfig = {
   solidity: {
