@@ -18,6 +18,7 @@ export function handleNewAirdrop(event: NewAirdrop): void {
   airdrop.remainingAmount = event.params.amount
   airdrop.token = event.params.token
   airdrop.ipfs = event.params.ipfs
+  airdrop.open = true
   airdrop.save()
 }
 
@@ -39,4 +40,10 @@ export function handleRedemption(event: RedemptionEvent): void {
   redemption.amount = event.params.amount
   redemption.airdrop = airdropId
   redemption.save()
+}
+
+export function handleStopAirdrop(event: StoppedAirdrop): void {
+  let airdrop = Airdrop.load(event.params.airdropId.toString()) as Airdrop
+  airdrop.open = false
+  airdrop.save()
 }

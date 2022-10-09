@@ -56,7 +56,8 @@ contract Cocodrop {
     uint256 amountToSend = airdrop.amount;
     airdrop.amount = 0;
     // interact
-    require(airdrop.token.transferFrom(address(this), msg.sender, amountToSend), "Transfer failed");
+    require(airdrop.token.transfer(msg.sender, amountToSend), "Transfer failed");
+    emit StoppedAirdrop(_airdropId);
   }
 
   function redeem(uint256 _airdropId, uint256 _claimedAmount, bytes32[] memory _merkleProof) public {

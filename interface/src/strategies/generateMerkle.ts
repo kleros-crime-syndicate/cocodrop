@@ -17,8 +17,8 @@ export interface Merkle {
   height: number;
 }
 
-const generateMerkle = async (totalAmount: BigNumber, strategy: Strategy): Promise<Merkle> => {
-  const shares = await strategy.computeShares();
+const generateMerkle = async (totalAmount: BigNumber, strategy: Strategy, params: any[]): Promise<Merkle> => {
+  const shares = await strategy.computeShares(...params);
 
   const rewards = getRewards(totalAmount, shares.totalWeight, shares.shares);
   const claims: { address: string; amount: BigNumber; node: string; proof?: string[] }[] = rewards.map((item) => ({
