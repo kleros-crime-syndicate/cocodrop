@@ -31,15 +31,20 @@ const SelectStrategy: React.FC<{
   const params = Array(strategyId ? strategies[strategyId].parameters.length : 0);
   return (
     <>
-      <Select
-        styles={selectStyle}
-        {...{ options }}
-        formatOptionLabel={OptionFormat}
-        value={strategyId ? options[strategyId] : undefined}
-        onChange={(e) => setStrategyId(e?.value)}
-        isSearchable={false}
-        placeholder="Select strategy..."
-      />
+      <div>
+        <h1 className="font-display text-white text-2xl">
+          Strategy
+        </h1>
+        <Select
+          styles={selectStyle}
+          {...{ options }}
+          formatOptionLabel={OptionFormat}
+          value={strategyId ? options[strategyId] : undefined}
+          onChange={(e) => setStrategyId(e?.value)}
+          isSearchable={false}
+          placeholder="Select strategy..."
+        />
+      </div>
       { !isUndefined(strategyId) && strategies[strategyId].parameters.map((parameter, i) => (
         <div key={i}>
           <h1 className="font-display text-white text-2xl">
@@ -67,8 +72,5 @@ const OptionFormat: (option: Option) => React.ReactNode = ({ label, description,
     </div>
   </div>
 );
-
-const Parameters = () => {
-}
 
 export default SelectStrategy;

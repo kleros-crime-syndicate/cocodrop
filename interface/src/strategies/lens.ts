@@ -67,12 +67,28 @@ const lensCompute = async (profileId: string) => {
   };
 };
 
+const getDisplayName = async (profileId: string) => {
+  const { name } = await request(
+    "https://api.lens.dev/",
+    gql`
+      query username($profileId: String) {
+        profile(request: { profileId: $profileId }) {
+          name
+        }
+      }
+    `,
+    { request: { profileId: profileId } }
+  );
+  return (`For accounts following ${name} on Lens.`);
+};
+
 const lensStrategy: Strategy = {
   name: "Lens Followers",
   description: "Reward your lens followers",
   logoUri: "https://image.com/thing.png",
   parameters: ["Profile ID"],
   computeShares: lensCompute,
+  getDisplayName,
 };
 
 export default lensStrategy;

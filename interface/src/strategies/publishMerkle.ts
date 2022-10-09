@@ -4,6 +4,7 @@ import { Merkle } from "./generateMerkle";
 export interface Metadata {
   title: string;
   description: string;
+  strategy: string;
 }
 
 const publishMerkle = async (merkleTree: Merkle, metadata: Metadata): Promise<string> => {

@@ -8,20 +8,25 @@ import SelectStrategy from "./SelectStrategy";
 import strategies from "strategies";
 import { useCocodropContract, useERC20Contract } from "hooks/useContract";
 import Input from "components/Input";
-import generateMerkle, { Merkle } from 'strategies/generateMerkle';
-import publishMerkle, { Metadata } from 'strategies/publishMerkle';
+import generateMerkle, { Merkle } from "strategies/generateMerkle";
+import publishMerkle, { Metadata } from "strategies/publishMerkle";
+import BackgroundCreate from "assets/background-create.jpg";
 
 type IFormInfo = {
+  title: string | undefined;
+  description: string | undefined;
   strategyId: number | undefined;
   tokenAddress: string | undefined;
   totalAmount: BigNumber | undefined;
-  parameters: any[] | undefined;
+  parameters: any[];
   tokenAddressHasError: boolean;
   totalAmountHasError: boolean;
 };
 
 const Create: React.FC = () => {
   const [formInfo, setFormInfo] = useState<IFormInfo>({
+    title: undefined,
+    description: undefined,
     strategyId: undefined,
     tokenAddress: undefined,
     totalAmount: undefined,
@@ -56,21 +61,64 @@ const Create: React.FC = () => {
   );
   const cocodrop = useCocodropContract();
   return (
-    <div className="bg-[#4298A9] h-screen flex">
+    <div
+      className={cn(
+        "bg-cover",
+        "bg-no-repeat",
+        "bg-center",
+        "h-screen",
+        "flex"
+      )}
+      style={{ backgroundImage: `url('${BackgroundCreate}')` }}
+    >
       <div className="flex flex-col gap-8 m-auto w-1/3 p-10 bg-white/30 rounded-2xl">
         <h1 className="font-display text-white text-6xl">
           Create AirDrop
         </h1>
-        <SelectStrategy
-          strategyId={formInfo.strategyId}
-          setStrategyId={(value) =>
-            setFormInfo({ ...formInfo, strategyId: value })
-          }
-          parameters={formInfo.parameters}
-          setParameters={(parameters) =>
-            setFormInfo({ ...formInfo, parameters })
-          }
-        />
+        <div>
+          <h1 className="font-display text-white text-2xl">
+            Title
+          </h1>
+          <Input
+            placeholder="Title..."
+            value={formInfo.title}
+            hasError={false}
+            onChange={(e) => {
+              setFormInfo({
+                ...formInfo,
+                title: e.target.value
+              });
+            }}
+          />
+        </div>
+        <div>
+          <h1 className="font-display text-white text-2xl">
+            Description
+          </h1>
+          <Input
+            placeholder="Description..."
+            value={formInfo.description}
+            hasError={false}
+            onChange={(e) => {
+              setFormInfo({
+                ...formInfo,
+                description: e.target.value
+              });
+            }}
+          />
+        </div>
+        <div className="flex flex-col gap-8">
+          <SelectStrategy
+            strategyId={formInfo.strategyId}
+            setStrategyId={(value) =>
+              setFormInfo({ ...formInfo, strategyId: value })
+            }
+            parameters={formInfo.parameters}
+            setParameters={(parameters) =>
+              setFormInfo({ ...formInfo, parameters })
+            }
+          />
+        </div>
         <div>
           <h1 className="font-display text-white text-2xl">
             Token Address
@@ -137,14 +185,17 @@ const Create: React.FC = () => {
             "text-6xl"
           )}
           onClick={async () => {
-            const mt: Merkle = await generateMerkle(formInfo.totalAmount, strategies[formInfo.strategyId], formInfo.parameters);
-            const meta: Metadata = {
-                title: "Fairdrop",
-                description: "All POH humans"
+            if (cocodrop && formInfo.totalAmount && formInfo.tokenAddress && formInfo.strategyId && formInfo.title && formInfo.description) {
+              const mt: Merkle = await generateMerkle(formInfo.totalAmount, strategies[formInfo.strategyId], formInfo.parameters);
+              const meta: Metadata = {
+                  title: formInfo.title,
+                  description: formInfo.description,
+                  strategy: await strategies[formInfo.strategyId].getDisplayName(formInfo.parameters)
+              };
+              const contentId = await publishMerkle(mt, meta);
+              await ERC20Contract?.approve(cocodrop.address, formInfo.totalAmount).then(async (tx) => await tx.wait());
+              await cocodrop.createAirdrop(mt.root, formInfo.tokenAddress, formInfo.totalAmount, contentId).then(async (tx) => await tx.wait());
             }
-            const contentId = await publishMerkle(mt, meta);
-            console.log(contentId);
-            cocodrop?.createAirdrop(mt.root, formInfo.tokenAddress, formInfo.totalAmount, contentId);
           }}
         >
           Deploy

@@ -35,12 +35,17 @@ const pohCompute = async () => {
   };
 };
 
+const getDisplayName = () => (
+  "For accounts registered on Proof Of Humanity."
+)
+
 const pohStrategy: Strategy = {
   name: "Proof of Humanity",
   description: "Every registered human gets an equal share",
   logoUri: "https://github.com/Proof-Of-Humanity/proof-of-humanity-web/raw/master/assets/sample-evidence/photo.png",
   parameters: [],
   computeShares: pohCompute,
+  getDisplayName,
 };
 
 export default pohStrategy;

@@ -39,12 +39,18 @@ async function poapCompute(eventId: number) {
   };
 }
 
+const getDisplayName = async (eventId: number) => {
+  const { name } = await fetch(`https://api.poap.tech/events/id/${eventId}`).then((response) => response.json());
+  return (`For everyone with the "${name}" POAP.`);
+};
+
 const poapStrategy: Strategy = {
   name: "POAP",
   description: "poaps here",
   logoUri: "https://image.com/thing.png",
   parameters: ["Event ID"],
   computeShares: poapCompute,
+  getDisplayName,
 };
 
 export default poapStrategy;

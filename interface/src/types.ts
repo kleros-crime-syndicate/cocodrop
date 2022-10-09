@@ -6,6 +6,7 @@ export interface Strategy {
   logoUri: string;
   parameters: Array<string>;
   computeShares: (...args: any[]) => Promise<{ totalWeight: number; shares: Record<string, number> }>;
+  getDisplayName: (...args: any[]) => string | Promise<string>;
 }
 
 export interface Reward {
