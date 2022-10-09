@@ -49,7 +49,7 @@ const sismoStrategy: Strategy = {
   name: "Sismo",
   description: "Every sismo badge gets an equal share",
   logoUri: "https://sismo-prod-hub-static.s3.eu-west-1.amazonaws.com/badges/sismo_early_users.svg",
-  parameters: [],
+  parameters: ["Token Id"],
   computeShares: sismoCompute,
   getDisplayName,
 };
