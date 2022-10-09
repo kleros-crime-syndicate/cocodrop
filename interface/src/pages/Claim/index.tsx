@@ -17,7 +17,6 @@ const AirdropCard: React.FC<{ airdrop: ArrayElement<AirdropsQuery["airdrops"]> }
   const [file] = useIPFS<IpfsFile>(airdrop.ipfs);
   const contract = useCocodropContract();
   const redemptionExists = useRedemptionExists(airdrop.id, account);
-
   if (!file) return null;
 
   return (
@@ -39,7 +38,7 @@ const AirdropCard: React.FC<{ airdrop: ArrayElement<AirdropsQuery["airdrops"]> }
 
         <br />
 
-        {account && file.merkleTree[account] ? (
+        {account && file.merkleTree[account.toLowerCase()] ? (
           redemptionExists ? (
             <span className="font-display text-blue-500">Already claimed 🌴</span>
           ) : (
@@ -49,7 +48,11 @@ const AirdropCard: React.FC<{ airdrop: ArrayElement<AirdropsQuery["airdrops"]> }
                 if (!contract) return;
                 contract
                   .connect(account)
-                  .redeem(airdrop.id, file.merkleTree[account].value, file.merkleTree[account].proof);
+                  .redeem(
+                    airdrop.id,
+                    file.merkleTree[account.toLowerCase()].value,
+                    file.merkleTree[account.toLowerCase()].proof
+                  );
               }}
             >
               🥥 Claim
