@@ -54,7 +54,7 @@ const AirdropCard: React.FC<{ airdrop: ArrayElement<AirdropsQuery["airdrops"]> }
                   .connect(account)
                   .redeem(
                     airdrop.id,
-                    file.merkleTree.claims[account.toLowerCase()].value,
+                    file.merkleTree.claims[account.toLowerCase()].amount,
                     file.merkleTree.claims[account.toLowerCase()].proof
                   );
                 toast.info("Claim transaction sent!")
