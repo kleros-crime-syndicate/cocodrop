@@ -6,6 +6,7 @@
     "codegen": "graph codegen",
     "build": "graph build",
     "deploy:mumbai": "graph deploy --node https://api.thegraph.com/deploy/ kleros-crime-syndicate/cocodrop-mumbai",
+    "deploy:optimism": "graph deploy --node https://api.thegraph.com/deploy/ kleros-crime-syndicate/cocodrop-optimism",
     "deploy:goerli": "graph deploy --node https://api.thegraph.com/deploy/ kleros-crime-syndicate/cocodrop-goerli",
     "deploy:gnosischain": "graph deploy --node https://api.thegraph.com/deploy/ kleros-crime-syndicate/cocodrop-gnosischain",
     "deploy:polygon": "graph deploy --node https://api.thegraph.com/deploy/ kleros-crime-syndicate/cocodrop-polygon",
