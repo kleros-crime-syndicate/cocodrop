@@ -32,33 +32,32 @@ const SelectStrategy: React.FC<{
   return (
     <>
       <div>
-        <h1 className="font-display text-white text-2xl">
-          Strategy
-        </h1>
+        <h1 className="font-display text-white text-2xl">Strategy</h1>
         <Select
           styles={selectStyle}
           {...{ options }}
           formatOptionLabel={OptionFormat}
           value={strategyId ? options[strategyId] : undefined}
-          onChange={(e) => setStrategyId(e?.value)}
+          onChange={(e: { value: number; label: string; description: string; logoUri: string }) =>
+            setStrategyId(e.value)
+          }
           isSearchable={false}
           placeholder="Select strategy..."
         />
       </div>
-      { !isUndefined(strategyId) && strategies[strategyId].parameters.map((parameter, i) => (
-        <div key={i}>
-          <h1 className="font-display text-white text-2xl">
-            {parameter}
-          </h1>
-          <Input
-            value={parameters?.at(i)}
-            onChange={(e) => {
-              params[i] = e.target.value;
-              setParameters(params);
-            }}
-          />
-        </div>
-      )) }
+      {!isUndefined(strategyId) &&
+        strategies[strategyId!].parameters.map((parameter, i) => (
+          <div key={i}>
+            <h1 className="font-display text-white text-2xl">{parameter}</h1>
+            <Input
+              value={parameters?.at(i)}
+              onChange={(e) => {
+                params[i] = e.target.value;
+                setParameters(params);
+              }}
+            />
+          </div>
+        ))}
     </>
   );
 };

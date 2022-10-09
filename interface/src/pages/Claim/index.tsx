@@ -86,10 +86,10 @@ const Claim: React.FC = () => {
         )}
 
         <div className="w-full flex flex-col">
-          {airdrops ? (
+          {airdrops?.length ? (
             airdrops.map((airdrop) => <AirdropCard key={airdrop.id} airdrop={airdrop} />)
           ) : (
-            <span>No airdrops available</span>
+            <span className="font-display text-xl mt-16">No airdrops available? 😥🌴</span>
           )}
         </div>
       </div>

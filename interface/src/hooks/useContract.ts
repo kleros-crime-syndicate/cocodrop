@@ -4,10 +4,13 @@ import { AddressZero } from "@ethersproject/constants";
 import { Contract } from "@ethersproject/contracts";
 import { isAddress } from "utils/address";
 import { useMemo } from "react";
-import CocodropJson from "@cocodrop/cocodrop-contracts/deployments/goerli/Cocodrop.json";
+import CocodropGnosis from "@cocodrop/cocodrop-contracts/deployments/gnosischain/Cocodrop.json";
+import CocodropOptimism from "@cocodrop/cocodrop-contracts/deployments/optimism/Cocodrop.json";
+import CocodropMumbai from "@cocodrop/cocodrop-contracts/deployments/mumbai/Cocodrop.json";
 import { Cocodrop } from "@cocodrop/cocodrop-contracts/typechain-types/src/Cocodrop";
 import ERC20Json from "@cocodrop/cocodrop-contracts/artifacts/@openzeppelin/contracts/token/ERC20/IERC20.sol/IERC20.json";
 import { IERC20 } from "@cocodrop/cocodrop-contracts/typechain-types/@openzeppelin/contracts/token/ERC20/IERC20";
+import { ChainID } from "constants/chains";
 
 export function useContract<T extends Contract = Contract>(
   addressOrAddressMap: string | { [chainId: number]: string } | undefined,
@@ -49,4 +52,13 @@ export function getContract(address: string, ABI: any, provider: JsonRpcProvider
 
 export const useERC20Contract = (address?: string) => useContract<IERC20>(address, ERC20Json.abi);
 
-export const useCocodropContract = () => useContract<Cocodrop>(CocodropJson.address, CocodropJson.abi);
+export const useCocodropContract = () =>
+  useContract<Cocodrop>(
+    {
+      [ChainID.GNOSIS]: CocodropGnosis.address,
+      [ChainID.OPTIMISM]: CocodropOptimism.address,
+      [ChainID.GOERLI]: CocodropGnosis.address,
+      [ChainID.MUMBAI]: CocodropMumbai.address,
+    },
+    CocodropGnosis.abi
+  );
