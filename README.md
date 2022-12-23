@@ -14,6 +14,19 @@
 
 # Cocodrop 🥥
 
+The no code, point and click airdrop.
+
+- Struggling with airdrops? Are you COCONUTZ?
+- Lens, POAP, POH, Sismo, what do they have in common? C🥥C🥥drops!
+- They said money doesn't grow in trees... but Cocodrops grow in Merkle trees!
+- A Cocodrop a day keeps the community engaged.
+
+<p align="center">
+
+<img alt="coocrazy" src="https://cocodrop.netlify.app/parachute-coconut.9b30429d.webp" width="512">
+
+</p>
+
 🛠 Toolchain
 -----
 
