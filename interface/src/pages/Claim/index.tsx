@@ -50,17 +50,15 @@ const AirdropCard: React.FC<{ airdrop: ArrayElement<AirdropsQuery["airdrops"]> }
               className="self-start p-2 border rounded font-display"
               onClick={async () => {
                 if (!contract) return;
-                const tx = await contract
-                  .connect(account)
-                  .redeem(
-                    airdrop.id,
-                    file.merkleTree.claims[account.toLowerCase()].amount,
-                    file.merkleTree.claims[account.toLowerCase()].proof
-                  );
-                toast.info("Claim transaction sent!")
+                const tx = await contract.redeem(
+                  Number(airdrop.id),
+                  file.merkleTree.claims[account.toLowerCase()].amount,
+                  file.merkleTree.claims[account.toLowerCase()].proof
+                );
+                toast.info("Claim transaction sent!");
                 await tx.wait();
-                toast.info("Claim transaction mined! 🥥")
-                confetti.addConfetti({emojis: ["🥥"]});
+                toast.info("Claim transaction mined! 🥥");
+                confetti.addConfetti({ emojis: ["🥥"] });
               }}
             >
               🥥 Claim

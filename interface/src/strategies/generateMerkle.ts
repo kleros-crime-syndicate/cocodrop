@@ -23,7 +23,7 @@ const generateMerkle = async (totalAmount: BigNumber, strategy: Strategy, params
   const rewards = getRewards(totalAmount, shares.totalWeight, shares.shares);
   const claims: { address: string; amount: BigNumber; node: string; proof?: string[] }[] = rewards.map((item) => ({
     ...item,
-    node: MerkleTree.makeLeafNode(item.address, item.amount as any),
+    node: MerkleTree.makeLeafNode({ type: "address", value: item.address }, item.amount as any),
   }));
   const nodes = claims.map((claim) => claim.node);
   const mt = new MerkleTree(nodes);
