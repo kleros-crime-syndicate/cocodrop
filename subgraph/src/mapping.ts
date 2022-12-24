@@ -16,9 +16,9 @@ export function handleNewAirdrop(event: NewAirdrop): void {
 
 export function handleRedemption(event: RedemptionEvent): void {
   // does redeemer exist? if not, create.
-  let redeemer = Redeemer.load(event.transaction.from.toString());
+  let redeemer = Redeemer.load(event.transaction.from.toHexString());
   if (!redeemer) {
-    redeemer = new Redeemer(event.transaction.from.toString());
+    redeemer = new Redeemer(event.transaction.from.toHexString());
     redeemer.airdrops = [];
     redeemer.save();
   }
