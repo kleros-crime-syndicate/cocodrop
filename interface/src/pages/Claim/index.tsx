@@ -76,6 +76,11 @@ const Claim: React.FC = () => {
   const { chainId, activate } = useWeb3();
   const airdrops = useAirdrops();
 
+  const parsedAirdrops = airdrops
+    ? airdrops.map(airdrop => ({...airdrop, airdropId: airdrop.airdropId}))
+      .sort((a, b) => b.airdropId - a.airdropId)
+    : undefined
+
   return (
     <div
       className={cn("bg-cover", "bg-no-repeat", "bg-center", "min-h-screen", "flex")}
@@ -95,8 +100,8 @@ const Claim: React.FC = () => {
         )}
 
         <div className="w-full flex flex-col">
-          {airdrops?.length ? (
-            airdrops.map((airdrop) => <AirdropCard key={airdrop.id} airdrop={airdrop} />)
+          {parsedAirdrops?.length ? (
+            parsedAirdrops.map((airdrop) => <AirdropCard key={airdrop.id} airdrop={airdrop} />)
           ) : (
             <span className="font-display text-xl mt-16">No airdrops available? 😥🌴</span>
           )}
