@@ -112,6 +112,9 @@ const Create: React.FC = () => {
             ) : (
               <>
                 <Form {...{ formInfo, setFormInfo }} />
+                <div className="flex flex-col gap-2 m-auto w-1/2 p-10 bg-white/30 rounded-2xl">
+                  UI will freeze while generating preview! Press F12 to read console
+                </div>
                 <Button
                   text="Preview"
                   onClick={async () => {
@@ -121,7 +124,7 @@ const Create: React.FC = () => {
                         cocodrop &&
                         formInfo.totalAmount &&
                         formInfo.tokenAddress &&
-                        formInfo.strategyId &&
+                        typeof formInfo.strategyId === "number" &&
                         formInfo.title &&
                         formInfo.description
                       ) {

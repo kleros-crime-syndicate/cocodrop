@@ -18,6 +18,7 @@ const getAllHumans = async (): Promise<string[]> => {
   const batches = [];
   let lastId = "";
   while (true) {
+    console.log("Human batch", batches.length)
     const humans = await getBatch(1000, lastId);
     batches.push(humans);
     if (humans.length < 1000) break;
@@ -28,7 +29,11 @@ const getAllHumans = async (): Promise<string[]> => {
 
 const pohCompute = async () => {
   const humans = await getAllHumans();
-  const weightedHumans = humans.reduce((acc, human) => ({ ...acc, [human]: 1 }), {} as Record<string, number>);
+  console.log("Got all humans, compute weights...")
+  const weightedHumans = {}
+  humans.forEach((human) => {
+    weightedHumans[human] = 1;
+  });
   return {
     totalWeight: humans.length,
     shares: weightedHumans,
@@ -41,7 +46,7 @@ const getDisplayName = () => (
 
 const pohStrategy: Strategy = {
   name: "Proof of Humanity",
-  description: "Every registered human gets an equal share",
+  description: "Every registered human gets an equal share. Takes a long time to build.",
   logoUri: "https://app.proofofhumanity.id/images/governance.png",
   parameters: [],
   computeShares: pohCompute,

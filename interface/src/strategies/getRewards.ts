@@ -1,5 +1,4 @@
 import { BigNumber } from "ethers";
-import { Reward } from "types";
 
 const normalizer = 1_000_000_000;
 
