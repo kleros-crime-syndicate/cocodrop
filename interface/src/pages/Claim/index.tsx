@@ -13,6 +13,7 @@ import { useCocodropContract } from "hooks/useContract";
 import useRedemptionExists from "api/useRedemptionExists";
 import cn from "classnames";
 import BackgroundCreate from "assets/background-create.jpg";
+import useExhausted from "api/useExhausted";
 
 const AirdropCard: React.FC<{ airdrop: ArrayElement<AirdropsQuery["airdrops"]> }> = ({ airdrop }) => {
   const confetti = useConfetti();
@@ -21,6 +22,7 @@ const AirdropCard: React.FC<{ airdrop: ArrayElement<AirdropsQuery["airdrops"]> }
   if (airdrop.id === "4") console.log(airdrop.ipfs);
   const contract = useCocodropContract();
   const redemptionExists = useRedemptionExists(airdrop.id, account);
+  const exhausted = useExhausted(airdrop.id, account);
   if (!file) return null;
 
   return (
@@ -45,6 +47,8 @@ const AirdropCard: React.FC<{ airdrop: ArrayElement<AirdropsQuery["airdrops"]> }
         {account && file.merkleTree.claims[account.toLowerCase()] ? (
           redemptionExists ? (
             <span className="font-display text-blue-500">Already claimed 🌴</span>
+          ) : exhausted ? (
+            <span className="font-display text-blue-500">Nothing left 🌴</span>
           ) : (
             <button
               className="self-start p-2 border rounded font-display"
