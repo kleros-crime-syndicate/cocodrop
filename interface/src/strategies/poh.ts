@@ -1,14 +1,14 @@
 import request from "graphql-request";
 import { Strategy } from "types";
 
-const getBatch = async (first: number, skip: number): Promise<string[]> => {
+const getBatch = async (first: number, lastId: string): Promise<string[]> => {
   const query = `{
-    submissions(where: { registered: true }, first: ${first}, skip: ${skip}){
+    submissions(where: { id_gt: "${lastId}", registered: true }, first: ${first}){
       id
     }
   }`;
   const result = await request(
-    "https://gateway.thegraph.com/api/d98c97feb09f87d2d86956a815a5dbb5/subgraphs/id/CvzNejNZR2UTQ66wL7miGgfWh9dmiwgTtTfgQCBvMQRE",
+    "https://api.thegraph.com/subgraphs/name/kleros/proof-of-humanity-mainnet",
     query
   );
   return result.submissions.map((submission: any) => submission.id);
@@ -16,12 +16,12 @@ const getBatch = async (first: number, skip: number): Promise<string[]> => {
 
 const getAllHumans = async (): Promise<string[]> => {
   const batches = [];
-  let skip = 0;
+  let lastId = "";
   while (true) {
-    const humans = await getBatch(1000, skip);
+    const humans = await getBatch(1000, lastId);
     batches.push(humans);
     if (humans.length < 1000) break;
-    skip += 1000;
+    lastId = humans[999]
   }
   return batches.flat(1);
 };
