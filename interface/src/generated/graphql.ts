@@ -28,6 +28,8 @@ export type Airdrop = {
   id: Scalars['ID'];
   /** Ipfs file containing the merkle drop */
   ipfs: Scalars['String'];
+  /** Whether if it's still open */
+  open: Scalars['Boolean'];
   /** How much amount was this airdrop created with */
   originalAmount: Scalars['BigInt'];
   /** Redeemers array */
@@ -103,6 +105,10 @@ export type Airdrop_Filter = {
   ipfs_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
   ipfs_starts_with?: InputMaybe<Scalars['String']>;
   ipfs_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  open?: InputMaybe<Scalars['Boolean']>;
+  open_in?: InputMaybe<Array<Scalars['Boolean']>>;
+  open_not?: InputMaybe<Scalars['Boolean']>;
+  open_not_in?: InputMaybe<Array<Scalars['Boolean']>>;
   originalAmount?: InputMaybe<Scalars['BigInt']>;
   originalAmount_gt?: InputMaybe<Scalars['BigInt']>;
   originalAmount_gte?: InputMaybe<Scalars['BigInt']>;
@@ -134,6 +140,7 @@ export enum Airdrop_OrderBy {
   Donor = 'donor',
   Id = 'id',
   Ipfs = 'ipfs',
+  Open = 'open',
   OriginalAmount = 'originalAmount',
   Redeemers = 'redeemers',
   Redemptions = 'redemptions',

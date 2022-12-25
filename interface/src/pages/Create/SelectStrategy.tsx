@@ -18,8 +18,8 @@ type Option = {
 
 const SelectStrategy: React.FC<{
   setStrategyId: (value: number | undefined) => void;
-  setParameters: (params: any[] | undefined) => void;
-  parameters?: any[];
+  setParameters: (params: any[]) => void;
+  parameters: any[];
   strategyId?: number;
 }> = ({ strategyId, setStrategyId, parameters, setParameters }) => {
   const options = strategies.map(({ name, logoUri, description }, i) => ({
@@ -28,7 +28,7 @@ const SelectStrategy: React.FC<{
     description,
     logoUri,
   }));
-  const params = Array(strategyId ? strategies[strategyId].parameters.length : 0);
+  const params = [...parameters]
   return (
     <>
       <div>
@@ -50,7 +50,7 @@ const SelectStrategy: React.FC<{
           <div key={i}>
             <h1 className="font-display text-white text-2xl">{parameter}</h1>
             <Input
-              value={parameters?.at(i)}
+              value={params[i]}
               onChange={(e) => {
                 params[i] = e.target.value;
                 setParameters(params);

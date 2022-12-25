@@ -19,33 +19,40 @@ export interface Merkle {
 
 const generateMerkle = async (totalAmount: BigNumber, strategy: Strategy, params: any[]): Promise<Merkle> => {
   console.log("Generating shares...");
+  console.log({ params });
   const shares = await strategy.computeShares(...params);
-  console.log("Got", Object.keys(shares.shares).length, "shares.")
-  console.log("Generating rewards...")
+  console.log("Got", Object.keys(shares.shares).length, "shares.");
+  console.log("Generating rewards...");
   const rewards = getRewards(totalAmount, shares.totalWeight, shares.shares);
-  console.log("Done generating rewards.")
-  console.log("Generating leaves...")
+  console.log("Done generating rewards.");
+  console.log("Generating leaves...");
   const claims: { address: string; amount: BigNumber; node: string; proof?: string[] }[] = rewards.map((item) => ({
     ...item,
     node: MerkleTree.makeLeafNode({ type: "address", value: item.address }, item.amount as any),
   }));
   const nodes = claims.map((claim) => claim.node);
-  console.log("Done generating leaves.")
+  console.log("Done generating leaves.");
 
   const mt = new MerkleTree(nodes);
 
-  console.log("Generating proofs. This process can take a while...")
+  console.log("Generating proofs. This process can take a while...");
   for (let i = 0; i < claims.length; i++) {
-    if (i % 37 === 0) console.log(`${Math.floor(i / claims.length * 1000)/10}%`, "Proof", i, "of", claims.length);
+    if (i % 37 === 0) console.log(`${Math.floor((i / claims.length) * 1000) / 10}%`, "Proof", i, "of", claims.length);
     const claim = claims[i];
     claim.proof = mt.getHexProof(claim.node);
   }
+
+
+  console.log("Done. Keying claims...");
 
   const keyedClaims = {};
   claims.forEach((claim) => {
     keyedClaims[claim.address.toLowerCase()] = claim;
     delete keyedClaims[claim.address.toLowerCase()].address;
   });
+
+
+  console.log("Bulding Merkle Tree object...");
 
   const merkleTree = {
     claims: keyedClaims,

@@ -135,10 +135,11 @@ const Create: React.FC = () => {
                         );
                         setRecipients(Object.keys(mt.claims).length);
                         setMerkleRoot(mt.root);
+                        const strategyDisplay = await strategies[formInfo.strategyId].getDisplayName(...formInfo.parameters)
                         const meta: Metadata = {
                           title: formInfo.title,
                           description: formInfo.description,
-                          strategy: await strategies[formInfo.strategyId].getDisplayName(formInfo.parameters),
+                          strategy: strategyDisplay,
                         };
                         setStrategyDisplayName(meta.strategy);
                         setContentId(await publishMerkle(mt, meta));

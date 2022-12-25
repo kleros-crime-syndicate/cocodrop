@@ -9,7 +9,6 @@ export interface Metadata {
 
 const publishMerkle = async (merkleTree: Merkle, metadata: Metadata): Promise<string> => {
   const obj = { merkleTree, metadata };
-
   const contentId = await ipfsPublishBuffer("airdrop.json", new Buffer(JSON.stringify(obj)));
   return contentId;
 };
