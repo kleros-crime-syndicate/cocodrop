@@ -60,7 +60,7 @@ const getDisplayName = async (...args: string[]): Promise<string> => {
   const result = await request("https://hub.snapshot.org/graphql", query);
   const proposal = result.proposal as Proposal
   const actualChoice = Number(args[1])
-  const title = `Voters of "${proposal.choices[actualChoice]}" in Proposal "${proposal.title}"`
+  const title = `Voters of "${proposal.choices[actualChoice - 1]}" in Proposal "${proposal.title}"`
   return title;
 }
 
